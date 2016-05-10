@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   
+   <title>ATTENDANCE STUDENT </title>  
+
+    
+  </head>
+  <body bgcolor = #48D1CC>
+		<div>
+        <div class="header">
+      			<center><img src="image/header.jpg" width="1300" border="3"/></a></p></center>
+    	 </div>
+			
+		</div><br />
+ 
+<?php
+session_start();
+$MATRIC_NO=$_GET['MATRIC_NO'];
+$conn = oci_connect('system','oracle','XE');
+$sql ="select * from STUDENT where MATRIC_NO='".$MATRIC_NO."'";
+//print($sql);
+$stid = oci_parse($conn,$sql);
+oci_execute($stid);
+$result=oci_fetch_array($stid);
+
+?>
+ 
+  <div class="container">
+  <table border="0" style="border-top:solid; border-bottom:solid; border-left:none; border-right:none; border-width:8px;" width="100%">
+     <form role="form" action="updateattnd3.php?MATRIC_NO=<?=$_GET["MATRIC_NO"];?>" method="post">
+   
+    
+    <div class="form-group">
+      <label for="MATRIC_NO" >MATRIC NO:</label> 
+        <input class="form-control" id="MATRIC_NO" type="text" name="MATRIC_NO" value="<?php echo $result['MATRIC_NO'];?>" readonly><br><br>
+      </div>
+
+     <div class="form-group">
+      <label for="STUD_NAME" >STUDENT NAME:</label> 
+       <input class="form-control" id="STUD_NAME" type="text" name="STUD_NAME" value="<?php echo $result['STUD_NAME'];?>" readonlykau><br><br>
+      </div>
+    
+    <div class="form-group"> 
+      <label for="PHONE" >PHONE:</label>
+      <input type="text" class="form-control" id="PHONE" name="PHONE" value="<?php echo $result['PHONE'];?>"><br><br>
+    </div>
+
+    <div class="form-group">
+      <label for="IC">IDENTITY CARD:</label>
+      <input type="text" class="form-control" id="IC" name="IC" value="<?php echo $result['IC'];?>"><br><br>
+    </div>
+    
+	<div class="form-group">
+      <label for="ADDRESS">ADDRESS:</label>
+      <input type="text" class="form-control" id="ADDRESS" name="ADDRESS" value="<?php echo $result['ADDRESS'];?>"><br><br>
+    </div>
+    <div class="form-group">
+      <label for="EMAIL">EMAIL:</label>
+      <input type="text" class="form-control" id="EMAIL" name="EMAIL" value="<?php echo $result['EMAIL'];?>"><br><br>
+    </div>
+    
+    <div class="form-group">
+      <label for="COURSE_CLASS">COURSE CLASS:</label>
+      <input type="text" class="form-control" id="COURSE_CLASS" name="COURSE_CLASS" value="<?php echo $result['COURSE_CLASS'];?>"><br><br>
+    </div>
+    <br>
+     <input id="submit" name="submit" type="submit" value="SAVE" class="btn btn-primary btn-lg pull-right">
+     
+    
+   </form>
+</table>
+</div>
+<?php  
+oci_close($conn);  
+?> 
+</body>
+</html>
+
+
+
+
+
+
