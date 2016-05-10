@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
 
-  <title>UTeM Attendance System</title>
+  <title>UTeM Attendance System A</title>
 
   <!-- Bootstrap core CSS -->
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
