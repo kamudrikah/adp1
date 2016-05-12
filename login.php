@@ -39,7 +39,7 @@
     <form class="form-signin" action="loginAttendance.php" method="POST">
       <h2 class="form-signin-heading">Welcome to UTeM Attendace System</h2>
       <label for="lecturerID" class="sr-only">Lecturer ID</label>
-      <input type="text" id="lecturerID" name="LECTURER_ID" class="form-control" placeholder="Ex: 123456" required autofocus>
+      <input type="text" id="lecturerID" name="LECTURER_ID" class="form-control" placeholder="ID Number" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" name="PWORD" class="form-control" placeholder="Password" required>
       <div class="checkbox">
