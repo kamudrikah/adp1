@@ -30,7 +30,7 @@ $STATUS = $_POST['status'];
 				
              Echo"<script language = 'Javascript'>
 					alert('Done register.')
-					location.href = 'register_lecturer.php'</script>";
+					location.href = 'list_lecturer.php'</script>";
 				
 	oci_close($conn);
 ?>
