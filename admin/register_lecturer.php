@@ -65,7 +65,7 @@
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
         <h2 class="sub-header">Register Lecturer</h2>
-        <form action="subject.php" method="post" class="form-horizontal">
+        <form action="subject.php" method="post" class="form-horizontal" enctype="multipart/form-data">
           <div class="form-group">
             <label for="exampleInputEmail1" class="col-sm-2 control-label">Lecturer ID</label>
             <div class="col-sm-10">
@@ -100,6 +100,12 @@
             <label for="exampleInputPassword1" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Upload picture</label>
+            <div class="col-sm-10">
+              <input type="file" name="fileToUpload" id="fileToUpload" accept="image/x-png, image/jpeg">
             </div>
           </div>
           <div class="form-group">
