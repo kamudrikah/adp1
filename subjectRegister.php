@@ -31,8 +31,8 @@
                     <td align="right">Subject Name</td><td><input type="text" name="subject_name" required /></td>
                     </tr>
                      <tr style="height:20px">
-                    <td align="right">Type</td><td><select>
-                      <option value="">Choose</option>
+                    <td align="right">Type</td><td>
+                    <select><option value="">Choose</option>
                     <option value="Compulsory">Compulsory</option>
   					<option value="Elective">Elective</option>
                   </select>

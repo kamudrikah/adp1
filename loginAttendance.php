@@ -27,7 +27,7 @@ if ($row['STATUS'] == 'admin')
 		$_SESSION["lecturer_id"] = $_POST['lecturer_id'];
 		Echo"<script language = 'Javascript'>
 					alert('SUCCESSFUL LOGIN !')
-					location.href = 'admin/mainpage.php'</script>";
+					location.href = 'mainpage.php'</script>";
 	}
 	elseif ($row['STATUS'] == 'lecturer')	
 	{
