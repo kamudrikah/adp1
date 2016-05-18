@@ -57,43 +57,64 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="index.php">Register Subject <span class="sr-only">(current)</span></a></li>
+          <li><a href="index.php">Register Subject</a></li>
           <li><a href="register_lecturer.php">Register Lecturer</a></li>
-          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
+          <li class="active"><a href="assign_lecturer.php">Assign Lecturer <span class="sr-only">(current)</span></a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <h2 class="sub-header">Register Subject</h2>
-        <form action="subject.php" method="post" class="form-horizontal">
-          <div class="form-group">
-            <label for="exampleInputEmail1" class="col-sm-2 control-label">Subject Code</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Code">
+        <h2 class="sub-header">Assign Lecturer</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left media-middle">
+                <a href="#">
+                  <img class="media-object" src="../image/ninja.png" alt="...">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Prof. Ku Ahmad Mudrikah</h4>
+                <p>
+                  <b>Lecturer ID:</b> S0001 <br>
+                  <b>Subject:</b> Durian Tunggal <br>
+                  <b>Class:</b> 2BITS S1G1, 2BITS S1G2
+                </p>
+              </div>
             </div>
           </div>
+        </div>
+
+        <form action="#" method="post" class="form-horizontal">
           <div class="form-group">
-            <label for="exampleInputPassword1" class="col-sm-2 control-label">Subject Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Subject Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1" class="col-sm-2 control-label">Subject Type</label>
+            <label for="exampleInputEmail1" class="col-sm-2 control-label">Assign To</label>
             <div class="col-sm-10">
               <select class="form-control">
                 <option>Choose</option>
-                <option value="Compulsory">Compulsory</option>
-                <option value="Elective">Elective</option>
+                <option value=""> -- BITS -- </option>
+                <option value="">1BITS S1G1</option>
+                <option value="">1BITS S1G2</option>
+                <option value="">2BITS S1G1</option>
+                <option value="">2BITS S1G2</option>
+                <option value="">3BITS S1G1</option>
+                <option value="">3BITS S1G2</option>
+                <option value=""> -- BITM -- </option>
+                <option value="">1BITM S1G1</option>
+                <option value="">1BITM S1G2</option>
+                <option value="">2BITM S1G1</option>
+                <option value="">2BITM S1G2</option>
+                <option value="">3BITM S1G1</option>
+                <option value="">3BITM S1G2</option>
               </select>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="submit" class="btn btn-primary">Save</button>
             </div>
           </div>
         </form>
+
       </div>
     </div>
   </div>

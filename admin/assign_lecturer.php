@@ -57,43 +57,42 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="index.php">Register Subject <span class="sr-only">(current)</span></a></li>
+          <li><a href="index.php">Register Subject</a></li>
           <li><a href="register_lecturer.php">Register Lecturer</a></li>
-          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
+          <li class="active"><a href="assign_lecturer.php">Assign Lecturer <span class="sr-only">(current)</span></a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <h2 class="sub-header">Register Subject</h2>
-        <form action="subject.php" method="post" class="form-horizontal">
-          <div class="form-group">
-            <label for="exampleInputEmail1" class="col-sm-2 control-label">Subject Code</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Code">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1" class="col-sm-2 control-label">Subject Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Subject Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1" class="col-sm-2 control-label">Subject Type</label>
-            <div class="col-sm-10">
-              <select class="form-control">
-                <option>Choose</option>
-                <option value="Compulsory">Compulsory</option>
-                <option value="Elective">Elective</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-          </div>
-        </form>
+        <h2 class="sub-header">Assign Lecturer</h2>
+        <div class="table-responsive">
+          <table class="table table-hover table-striped">
+            <tr>
+              <th>Lecturer ID</th><th>Lecturer</th><th>Subject</th><th>Class</th><th>Action</th>
+            </tr>
+            <tr>
+              <td>S0001</td>
+              <td>Prof. Mudrikah</td>
+              <td>Durian Tunggal</td>
+              <td>2BITS S1G1, 2BITS S1G2</td>
+              <td><a href="assign_to_class.php?lecturer_id=S0001" class="btn btn-primary">Assign</a></td>
+            </tr>
+            <tr>
+              <td>S0002</td>
+              <td>Prof. Syahmi</td>
+              <td>Durian Tunggal</td>
+              <td>3BITM S1G1, 3BITM S1G2</td>
+              <td><a href="assign_to_class.php?lecturer_id=S0002" class="btn btn-primary">Assign</a></td>
+            </tr>
+            <tr>
+              <td>S0003</td>
+              <td>Prof. Faiz</td>
+              <td>Durian Tunggal</td>
+              <td>3BITC S1G1, 3BITC S1G2, 2BITC S1G1</td>
+              <td><a href="#" class="btn btn-primary disabled">Assign</a></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>

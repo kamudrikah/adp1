@@ -59,6 +59,7 @@
         <ul class="nav nav-sidebar">
           <li><a href="index.php">Register Subject</a></li>
           <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
+          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
