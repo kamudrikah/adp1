@@ -57,34 +57,48 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="index.php">Register Subject <span class="sr-only">(current)</span></a></li>
-          <li><a href="register_lecturer.php">Register Lecturer</a></li>
+          <li><a href="index.php">Register Subject</a></li>
+          <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <h2 class="sub-header">Register Subject</h2>
+        <h2 class="sub-header">Register Lecturer</h2>
         <form action="subject.php" method="post" class="form-horizontal">
           <div class="form-group">
-            <label for="exampleInputEmail1" class="col-sm-2 control-label">Subject Code</label>
+            <label for="exampleInputEmail1" class="col-sm-2 control-label">Lecturer ID</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Code">
+              <input type="text" class="form-control" placeholder="Lecturer ID">
             </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1" class="col-sm-2 control-label">Subject Name</label>
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Full Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Subject Name">
+              <input type="text" class="form-control" placeholder="Full Name">
             </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1" class="col-sm-2 control-label">Subject Type</label>
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Phone Number</label>
             <div class="col-sm-10">
-              <select class="form-control">
-                <option>Choose</option>
-                <option value="Compulsory">Compulsory</option>
-                <option value="Elective">Elective</option>
-              </select>
+              <input type="text" class="form-control" placeholder="Phone Number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Position</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Position">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Password">
             </div>
           </div>
           <div class="form-group">
