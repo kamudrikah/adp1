@@ -1,3 +1,19 @@
+<?php 
+$conn = oci_connect('system','oracle','XE');
+session_start();
+
+if(!isset($_SESSION['lecturer_id'])) header ('location:');
+$LECTURER_ID = $_SESSION['LECTURER_ID'];
+$query = "select * from lecturer where LECTURER_ID ='$LECTURER_ID'";
+$stid = oci_parse($conn, $query);
+$r = @oci_execute($stid);
+while($objResult = oci_fetch_array($stid,OCI_BOTH))
+{
+	$LECTURER_ID="$objResult[0]";
+	$LECTURER_NAME="$objResult[1]";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,21 +74,14 @@
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
           <li class="active"><a href="mainPage2.php">Overview <span class="sr-only">(current)</span></a></li>
-          <li><a href="student2.php">Add Student</a></li>
-          <li><a href="#">Analytics</a></li>
-          <li><a href="#">Export</a></li>
+          <li><a href="addStudent.php">Add Student</a></li>
+            <li><a href="updateattnd.php">List Student</a></li>
+          <li><a href="subjectUpdate.php">List Subject</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-          <li><a href="">Nav item</a></li>
-          <li><a href="">Nav item again</a></li>
-          <li><a href="">One more nav</a></li>
-          <li><a href="">Another nav item</a></li>
-          <li><a href="">More navigation</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="">Nav item again</a></li>
-          <li><a href="">One more nav</a></li>
-          <li><a href="">Another nav item</a></li>
+          <li><a href="">Attendance</a></li>
+          <li><a href="">Warning Letter</a></li>
+          <li><a href="">Report</a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

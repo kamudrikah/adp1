@@ -31,7 +31,7 @@ echo $number_of_rows;
 		$_SESSION["LECTURER_ID"] = $_POST['LECTURER_ID'];
 		Echo"<script language = 'Javascript'>
 					alert('Login success')
-					location.href = 'mainPage.php'</script>";
+					location.href = 'mainPage2.php'</script>";
 	} 
 	else 
 	{

@@ -63,14 +63,7 @@
           <li><a href="#">Export</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-          <li><a href="">Nav item</a></li>
-          <li><a href="">Nav item again</a></li>
-          <li><a href="">One more nav</a></li>
-          <li><a href="">Another nav item</a></li>
-          <li><a href="">More navigation</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="">Nav item again</a></li>
+          <li><a href="">Teaching Class</a></li>
           <li><a href="">One more nav</a></li>
           <li><a href="">Another nav item</a></li>
         </ul>
@@ -78,47 +71,47 @@
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">Add Student</h1>
 
-        <form class="form-horizontal" action="student1.php" method="POST">
+        <form class="form-horizontal" action="addStudent1.php" method="POST">
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Student ID</label>
+            <label for="matric_no" class="col-sm-2 control-label">Student ID</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Student ID">
+              <input type="text" class="form-control" id="matric_no" placeholder="Student ID" required >
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Full Name</label>
+            <label for="stud_name" class="col-sm-2 control-label">Full Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Full Name">
+              <input type="text" class="form-control" id="stud_name" placeholder="Full Name" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Phone Number</label>
+            <label for="phone" class="col-sm-2 control-label">Phone Number</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Phone Number">
+              <input type="text" class="form-control" id="phone" placeholder="Phone Number">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">IC Number</label>
+            <label for="ic" class="col-sm-2 control-label">IC Number</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="IC Number">
+              <input type="text" class="form-control" id="ic" placeholder="IC Number">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
+            <label for="address" class="col-sm-2 control-label">Address</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Address">
+              <input type="text" class="form-control" id="address" placeholder="Address">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <label for="email" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-              <input type="Email" class="form-control" id="inputEmail3" placeholder="Email">
+              <input type="email" class="form-control" id="email" placeholder="Email">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Course Class</label>
+            <label for="course_class" class="col-sm-2 control-label">Course Class</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Course Class">
+              <input type="text" class="form-control" id="course_class" placeholder="Course Class">
             </div>
           </div>
           <div class="form-group">
