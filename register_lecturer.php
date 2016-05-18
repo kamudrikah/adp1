@@ -50,7 +50,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Logout</a></li>
+          <li><a href="index.php">Logout</a></li>
         </ul>
       </div>
     </div>

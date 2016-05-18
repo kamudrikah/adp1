@@ -24,7 +24,7 @@ $conn = oci_connect('system','oracle','XE');
 			oci_commit($conn);
 			Echo"<script language = 'Javascript'>
 								 alert('Update success')
-								  location.href = 'listlecturer.php'</script>";
+								  location.href = 'list_lecturer.php'</script>";
 			}  
 			else  
 			{  
