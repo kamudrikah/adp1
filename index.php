@@ -38,17 +38,17 @@
 
     <form class="form-signin" action="loginAttendance.php" method="POST">
       <h2 class="form-signin-heading">Welcome to UTeM Attendance System</h2>
-      <label for="lecturerID" class="sr-only">Lecturer ID</label>
-      <input type="text" id="lecturerID" name="LECTURER_ID" class="form-control" placeholder="Ex: 123456" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" name="PWORD" class="form-control" placeholder="Password" required>
+      <label for="lecturer_id" class="sr-only">Lecturer ID</label>
+      <input type="text" id="lecturer_id" name="lecturer_id" class="form-control" placeholder="Lecturer ID" required autofocus>
+      <label for="pword" class="sr-only">Password</label>
+      <input type="password" id="pword" name="pword" class="form-control" placeholder="Password" required>
       <div class="checkbox">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="text-left no-account">Don't have an account? <a href="registerPage.php">Register here!</a></p>
+     
     </form>
 
   </div> <!-- /container -->

@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
 
-  <title>Admin - ADP</title>
+  <title>Admin - UTeM Attendance System<</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
