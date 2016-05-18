@@ -87,7 +87,7 @@
 
         <form action="#" method="post" class="form-horizontal">
           <div class="form-group">
-            <label for="exampleInputEmail1" class="col-sm-2 control-label">Assign To</label>
+            <label for="exampleInputEmail1" class="col-sm-2 control-label">Assign to</label>
             <div class="col-sm-10">
               <select class="form-control">
                 <option>Choose</option>
