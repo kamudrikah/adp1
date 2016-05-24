@@ -1,4 +1,21 @@
+<?php
+$conn = oci_connect('system','oracle','XE');
+session_start();
+//if(!isset($_SESSION['lecturer_id'])) header ('location: ');
+$LECTURER_ID = $_GET['LECTURER_ID'];
+$query = "select * from lecturer where lecturer_id = '$LECTURER_ID'";
+$stid = oci_parse($conn,$query);
+oci_execute($stid);
+$row = oci_fetch_array($stid);
+?>
 
+<?php
+$conn = oci_connect('system','oracle','XE');
+$query1 = "select * from assign_class";
+$stid1 = oci_parse($conn,$query1);
+oci_execute($stid1);
+$row1 = oci_fetch_array($stid1);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,31 +87,45 @@
             <div class="media">
               <div class="media-left media-middle">
                 <a href="#">
-                  <img class="media-object" src="../image/ninja.png" alt="...">
+                  <img class="media-object" src="/image/ninja.png" alt="...">
                 </a>
               </div>
               <div class="media-body">
-                <h4 class="media-heading">Prof. Ku Ahmad Mudrikah</h4>
+                <h4 class="media-heading"><?php echo $row[1] ?></h4>
                 <p>
-                  <b>Lecturer ID:</b> S0001 <br>
-                  <b>Subject:</b> Durian Tunggal <br>
-                  <b>Class:</b> 2BITS S1G1, 2BITS S1G2
+                  <b>Lecturer ID:</b><?php echo $row[0] ?><br>
+                  <b>Subject:</b><?php echo $row1[2] ?>
+				  <br>
+                  <b>Class:</b><?php echo $row1[3] ?>
                 </p>
               </div>
             </div>
           </div>
         </div>
-
-        <form action="#" method="post" class="form-horizontal">
+<form action="assign.php" method="post" class="form-horizontal">
           <div class="form-group">
-            <label for="exampleInputEmail1" class="col-sm-2 control-label">Assign to</label>
+          
+           <label for="exampleInputEmail1" class="col-sm-2 control-label">Lecturer ID</label>
             <div class="col-sm-10">
-              <select class="form-control">
+              <input type="text" class="form-control" id="lecturer_id" name="lecturer_id" value = "<?php echo $row['LECTURER_ID'];?>">
+              
+            </div>
+              <label for="exampleInputEmail1" class="col-sm-2 control-label">Subject</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="code_subject" name="code_subject">
                 <option>Choose</option>
-                <option value=""> -- BITS -- </option>
-                <option value="">1BITS S1G1</option>
-                <option value="">1BITS S1G2</option>
-                <option value="">2BITS S1G1</option>
+                <option value="BITP 3423">BITP 3423</option>
+                <option value="BITP 1323">BITP 1323</option>
+               </select>
+            </div>
+            <label for="details" class="col-sm-2 control-label">Assign to</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="group_id" name="group_id">
+                <option>Choose</option>
+                <option value=""> -- BITC -- </option>
+                <option value="1BITC S1G1">1BITC S1G1</option>
+                <option value="1BITC S1G2">1BITC S1G2</option>
+                <!--<option value="">2BITS S1G1</option>
                 <option value="">2BITS S1G2</option>
                 <option value="">3BITS S1G1</option>
                 <option value="">3BITS S1G2</option>
@@ -104,9 +135,30 @@
                 <option value="">2BITM S1G1</option>
                 <option value="">2BITM S1G2</option>
                 <option value="">3BITM S1G1</option>
-                <option value="">3BITM S1G2</option>
+                <option value="">3BITM S1G2</option>-->
               </select>
             </div>
+            <br>
+           
+            
+            <label for="exampleInputEmail1" class="col-sm-2 control-label">Sem</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="sem" name="sem">
+                <option>Choose</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+               </select>
+            </div>
+            
+            <label for="exampleInputEmail1" class="col-sm-2 control-label">Class Session</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="class_session" name="class_session">
+                <option>Choose</option>
+                <option value="2013/2014">2013/2014</option>
+                <option value="2014/2015">2014/2015</option>
+               </select>
+            </div>
+
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -114,6 +166,7 @@
             </div>
           </div>
         </form>
+        
 
       </div>
     </div>

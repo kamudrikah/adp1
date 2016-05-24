@@ -22,9 +22,6 @@ $conn = oci_connect('system','oracle','XE');
 
  ob_start();
     $current_file=$_SERVER['SCRIPT_NAME'];    $massage= "";
-
-	
-
 $curs = oci_new_cursor($conn);
 $stid = oci_parse($conn, "begin listlecturer_proc(:rc); end;");
 oci_bind_by_name($stid, ":rc", $curs, -1, OCI_B_CURSOR);

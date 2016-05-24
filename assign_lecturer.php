@@ -1,4 +1,18 @@
 
+<?php  
+$conn = oci_connect('system','oracle','XE');
+
+ ob_start();
+    $current_file=$_SERVER['SCRIPT_NAME'];    $massage= "";
+$curs = oci_new_cursor($conn);
+$stid = oci_parse($conn, "begin listlecturer_proc(:rc); end;");
+oci_bind_by_name($stid, ":rc", $curs, -1, OCI_B_CURSOR);
+oci_execute($stid);
+
+oci_execute($curs);  
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,38 +74,56 @@
           <li><a href="mainpage.php">Register Subject</a></li>
           <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
           <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
+          <li><a href="subjectUpdate.php">List Subject Registered</a></li>
+           <li><a href="list_lecturer.php">List Lecturer</a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
         <h2 class="sub-header">Assign Lecturer</h2>
         <div class="table-responsive">
-          <table class="table table-hover table-striped">
-            <tr>
-              <th>Lecturer ID</th><th>Lecturer</th><th>Subject</th><th>Class</th><th>Action</th>
-            </tr>
-            <tr>
-              <td>S0001</td>
-              <td>Prof. Mudrikah</td>
-              <td>Durian Tunggal</td>
-              <td>2BITS S1G1, 2BITS S1G2</td>
-              <td><a href="assign_to_class.php?lecturer_id=S0001" class="btn btn-primary">Assign</a></td>
-            </tr>
-            <tr>
-              <td>S0002</td>
-              <td>Prof. Syahmi</td>
-              <td>Durian Tunggal</td>
-              <td>3BITM S1G1, 3BITM S1G2</td>
-              <td><a href="assign_to_class.php?lecturer_id=S0002" class="btn btn-primary">Assign</a></td>
-            </tr>
-            <tr>
-              <td>S0003</td>
-              <td>Prof. Faiz</td>
-              <td>Durian Tunggal</td>
-              <td>3BITC S1G1, 3BITC S1G2, 2BITC S1G1</td>
-              <td><a href="#" class="btn btn-primary disabled">Assign</a></td>
-            </tr>
-          </table>
+          <?php  
+
+ ?>
+ 
+<table width="1020" border="1" align="left">  
+<tr>
+<th width="111"> <div align="center">Lecturer ID</div></th>    
+<th width="179"> <div align="center">Lecturer Name </div></th>  
+<th width="140"> <div align="center">Phone Number</div></th>  
+   
+<th width="187"> <div align="center">Lecturer Position</div></th>  
+<th width="148"> <div align="center">Email</div></th>  
+  
+<th width="128"> <div align="center">Action </div></th> 
+
+</tr> 
+
+<?php  
+while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+$lecturer_id = $row['LECTURER_ID'];
+ ?>  
+	 
+<tr>  
+<td><div align="center"><?php echo $row['LECTURER_ID'];?></div></td>  
+<td><div align="center"><?php echo $row['LECTURER_NAME'];?></div></td>  
+<td><div align="center"><?php echo $row['PHONENO'];?></div></td>  
+<td><div align="center"><?php echo $row['LECTURER_POSITION'];?></div></td>  
+<td><div align="center"><?php echo $row['LECTURER_EMAIL'];?></div></td>   
+<td><div align="center"><?php echo $row['STATUS'];?></div></td>   
+ <td width="81" align="center"><a href="assign_to_class.php?LECTURER_ID=<?php echo $lecturer_id?>">ASSIGN</a></td>
+  
+</tr>  
+<?php  
+}
+?> 
+</table> 
+<?php
+oci_free_statement($stid);
+oci_free_statement($curs);
+oci_close($conn);
+				
+ ?>   
         </div>
       </div>
     </div>
