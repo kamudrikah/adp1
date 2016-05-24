@@ -48,6 +48,7 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p align="center">New User ? <a href="registeradmin.php">Create New Account</a></p>
      
     </form>
 

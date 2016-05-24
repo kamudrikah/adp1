@@ -21,8 +21,8 @@
 $conn = oci_connect('system','oracle','XE');
 
  ob_start();
-    $current_file=$_SERVER['SCRIPT_NAME'];
-    $massage= "";
+    $current_file=$_SERVER['SCRIPT_NAME'];    $massage= "";
+
 	
 
 $curs = oci_new_cursor($conn);
@@ -31,8 +31,23 @@ oci_bind_by_name($stid, ":rc", $curs, -1, OCI_B_CURSOR);
 oci_execute($stid);
 
 oci_execute($curs);  
+
+$curs2 = oci_new_cursor($conn);
+$stid2 = oci_parse($conn, "begin totallecturer_proc(:rc); end;");
+oci_bind_by_name($stid2, ":rc", $curs2, -1, OCI_B_CURSOR);
+oci_execute($stid2);
+
+oci_execute($curs2)
 ?>
 
+<?php  
+while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) { 
+?>
+<h5>Total Lecturer: <?php echo $row2['TOTAL_LECTURER'];?></h5> 
+
+<?php  
+}
+ ?>
  
 <table width="1100" border="1" align="center">  
 <tr>
@@ -49,6 +64,7 @@ oci_execute($curs);
 
 <?php  
 while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+$lecturer_id = $row['LECTURER_ID'];
  ?>  
 	 
 <tr>  
@@ -58,7 +74,7 @@ while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
 <td><div align="center"><?php echo $row['LECTURER_POSITION'];?></div></td>  
 <td><div align="center"><?php echo $row['LECTURER_EMAIL'];?></div></td>   
 <td><div align="center"><?php echo $row['STATUS'];?></div></td>   
- <td align="center"><a href="updateattnd2.php?LECTURER_ID=<?=$row['LECTURER_ID'];?>">UPDATE</a>||<a href="delete_lecturer.php?LECTURER_ID=<?=$row['LECTURER_ID'];?>">DELETE</a></td>
+ <td align="center"><a href="update_lect2.php?LECTURER_ID=<?php echo $lecturer_id?>">UPDATE</a>||<a href="delete_lecturer.php?LECTURER_ID=<?php echo $lecturer_id?>">DELETE</a></td>
   
 </tr>  
 <?php  
@@ -70,7 +86,7 @@ oci_free_statement($stid);
 oci_free_statement($curs);
 oci_close($conn);
 				
- ?>    
+ ?>   
  </form>        
 </body>  
 </html>

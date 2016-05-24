@@ -12,7 +12,7 @@ $conn = oci_connect('system','oracle','XE');
 $sql ='begin deletelecturer_proc (:v_lecturer_id);end;';
 
                 $stid = oci_parse($conn,$sql);
-				oci_bind_by_name($stid,':v_lecturer_id',$MATRIC_NO);
+				oci_bind_by_name($stid,':v_lecturer_id',$LECTURER_ID);
                 $r = @oci_execute($stid,OCI_COMMIT_ON_SUCCESS);
                 if($r)
                 {

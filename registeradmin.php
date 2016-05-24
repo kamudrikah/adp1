@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
   <meta name="author" content="">
   <link rel="icon" href="file:///C|/xampp/htdocs/favicon.ico">
 
-  <title>Admin - UTeM Attendance System</title>
+  <title>Admin - UTeM Attendance System<</title>
 
   <!-- Bootstrap core CSS -->
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +31,8 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+
 </head>
 
 <body>
@@ -56,41 +59,62 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          <li><a href="mainpage.php">Register Subject</a></li>
-          <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
-          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
-          <li><a href="subjectUpdate.php">List Subject Registered</a></li>
-           <li><a href="list_lecturer.php">List Lecturer</a></li>
-        </ul>
-      </div>
+       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <h2 class="sub-header">Register Subject</h2>
-        <form action="subject.php" method="post" class="form-horizontal">
+        <h2 class="sub-header">Register Lecturer</h2>
+        <form action="admincall.php" method="post" class="form-horizontal" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
+            <label for="exampleInputEmail1" class="col-sm-2 control-label">Lecturer ID</label>
             <div class="col-sm-10">
-              <input type="text" name="code_subject" class="form-control" placeholder="Code">
+              <input type="text" name="lecturer_id" class="form-control" placeholder="Lecturer ID" required />
             </div>
           </div>
           <div class="form-group">
-            <label for="subject_name" class="col-sm-2 control-label">Subject Name</label>
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Full Name</label>
             <div class="col-sm-10">
-              <input type="text" name="subject_name" class="form-control" placeholder="Subject Name">
+              <input type="text" name="lecturer_name" class="form-control" placeholder="Full Name" required />
             </div>
           </div>
           <div class="form-group">
-            <label for="type_subject" class="col-sm-2 control-label">Subject Type</label>
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Phone Number</label>
             <div class="col-sm-10">
-              <select class="form-control" name="type_subject">
-                <option>Choose</option>
-                <option value="Course Core Subject">Course Core Subject</option>
-                <option value="Program Core Subject">Program Core Subject</option>
-                <option value="University Subject">University Subject</option>
-              </select>
+              <input type="text" name="phoneNo" class="form-control" placeholder="Phone Number" required/>
             </div>
           </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Position</label>
+            <div class="col-sm-10">
+              <input type="text" name="lecturer_position" class="form-control" placeholder="Position" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" name="lecturer_email" class="form-control" placeholder="Email" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" name="pword" class="form-control" placeholder="Password" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Status</label>
+            <div class="col-sm-10">
+              <input type="text" name="status" class="form-control" placeholder="lecturer/admin" required/>
+            </div>
+          </div>
+          <!-- JANGAN LUPA BUAT !!! 
+          
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">Upload picture</label>
+            <div class="col-sm-10">
+              <input type="file" name="fileToUpload" id="fileToUpload" accept="image/x-png, image/jpeg">
+            </div>
+          </div>-->
+          
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-primary">Register</button>
@@ -111,5 +135,11 @@
   <script src="holder.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="ie10-viewport-bug-workaround.js"></script>
+  
+
+
+  
+  
+  
 </body>
 </html>

@@ -15,7 +15,7 @@
  <p align="right"><button type="submit" value="submit" class="btn btn-primary" >Home</button></p>
  </form>
 <form class="form-horizontal" method="POST">
-<h3 align="center">LIST SUBJECT</h3>
+<h3 align="center">LIST SUBJECT	</h3>
 <br>
 <?php  
 $conn = oci_connect('system','oracle','XE');
@@ -31,15 +31,31 @@ oci_bind_by_name($stid, ":rc", $curs, -1, OCI_B_CURSOR);
 oci_execute($stid);
 
 oci_execute($curs);  
+
+$curs2 = oci_new_cursor($conn);
+$stid2 = oci_parse($conn, "begin totalsubject_proc(:rc); end;");
+oci_bind_by_name($stid2, ":rc", $curs2, -1, OCI_B_CURSOR);
+oci_execute($stid2);
+
+oci_execute($curs2); 
 ?>
 
+
+<?php  
+
+while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) { 
+?>
+<h5>Total Subject: <?php echo $row2['TOTAL_SUBJECT'];?></h5> 
  
-<table width="800" border="1" align="center">  
+ <?php  
+}
+ ?>
+<table width="1000" border="1" align="center">  
 <tr>
-<th width="150"> <div align="center">Subject Code</div></th>    
-<th width="500"> <div align="center">Subject Name </div></th>  
-<th width="150"> <div align="center"> Type</div></th>  
-<th width="150"> <div align="center">Action </div></th> 
+<th width="126"> <div align="center">Subject Code</div></th>    
+<th width="351"> <div align="center">Subject Name </div></th>  
+<th width="164"> <div align="center"> Type</div></th>  
+<th width="131"> <div align="center">Action </div></th> 
 
 </tr> 
 

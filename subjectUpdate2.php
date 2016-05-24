@@ -38,12 +38,19 @@ $result=oci_fetch_array($stid);
 
      <div class="form-group">
       <label for="SUBJECT_NAME" >SUBJECT NAME:</label> 
-       <input class="form-control" id="SUBJECT_NAME" type="text" name="SUBJECT_NAME" value="<?php echo $result['SUBJECT_NAME'];?>" readonlykau><br><br>
+       <input class="form-control" id="SUBJECT_NAME" type="text" name="SUBJECT_NAME" value="<?php echo $result['SUBJECT_NAME'];?>"><br><br>
       </div>
     
     <div class="form-group"> 
-      <label for="TYPE_SUBJECT" >TYPE OF SUBJECT:</label>
-      <input type="text" class="form-control" id="TYPE_SUBJECT" name="TYPE_SUBJECT" value="<?php echo $result['TYPE_SUBJECT'];?>"><br><br>
+       <label for="type_subject" class="col-sm-2 control-label">SUBJECT TYPE</label>
+     <!-- <input type="text" class="form-control" id="TYPE_SUBJECT" name="TYPE_SUBJECT" value="<?php echo $result['TYPE_SUBJECT'];?>">-->
+     		  <select class="form-control" id="TYPE_SUBJECT" name="TYPE_SUBJECT" value="<?php echo $result['TYPE_SUBJECT'];?>">
+                <option></option>
+                <option value="Course Core Subject">Course Core Subject</option>
+                <option value="Program Core Subject">Program Core Subject</option>
+                <option value="University Subject">University Subject</option>
+              </select>
+              <br><br>
     </div>
 
      <br>

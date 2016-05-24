@@ -18,7 +18,7 @@
 session_start();
 $LECTURER_ID=$_GET['LECTURER_ID'];
 $conn = oci_connect('system','oracle','XE');
-$sql ="select lecturer_id, lecturer_name, phoneNo, lecturer_position, lecturer_email, pword, status from LECTURER_ID where LECTURER_ID='".$LECTURER_ID."'";
+$sql ="select * from LECTURER where LECTURER_ID='".$LECTURER_ID."'";
 //print($sql);
 $stid = oci_parse($conn,$sql);
 oci_execute($stid);
@@ -26,7 +26,7 @@ $result=oci_fetch_array($stid);
 
 ?>
  
-  <form role="form" action="updateattnd3.php?LECTURER_ID=<?=$_GET['LECTURER_ID'];?>" method="post">
+  <form role="form" method="POST" action="update_lect3.php">
   <table border="0" style="border-top:solid; border-bottom:solid; border-left:none; border-right:none; border-width:8px;" width="100%">
   <tr>
   <td width="30%" style="background-color:#eeeeee" align="center">
@@ -68,7 +68,7 @@ $result=oci_fetch_array($stid);
    </tr>
     
    <tr style="height:40px">
-   <td colspan="2" align="center" ><br /><input type="submit" value="SAVE" font-style="bold" class="btn"/></td>
+   <td colspan="2" align="center" ><br /><input type="submit" value="SAVE" name="btn_submit" font-style="bold" class="btn"/></td>
    </tr>
  	<br>
      

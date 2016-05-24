@@ -19,15 +19,9 @@ $TYPE_SUBJECT = $_POST['type_subject'];
 				oci_execute($stid);
 				//var_dump($sql);
 				
-             Echo"<script language = 'Javascript'>
+             echo"<script language = 'Javascript'>
 					alert('Done added subject in your system.')
-					location.href ='subjectUpdate.php' /script>";
-					
-					
-               
-
-       
-    
+					location.href ='subjectUpdate.php' </script>";
 
 	oci_close($conn);
 ?>
