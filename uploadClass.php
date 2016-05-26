@@ -1,6 +1,18 @@
+<?php 
+$conn = oci_connect('system','oracle','XE');
+session_start();
 
+if(!isset($_SESSION['LECTURER_ID'])) header ('location: ');
+$LECTURER_ID = $_SESSION['LECTURER_ID'];
+$sql = "select * from LECTURER WHERE LECTURER_ID = '$LECTURER_ID'";
+$objParse = oci_parse ($conn,$sql);
+oci_execute ($objParse, OCI_DEFAULT);
+while ($test = oci_fetch_assoc ($objParse))
+{	
+ 
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +20,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="file:///C|/xampp/htdocs/favicon.ico">
+  <link rel="icon" href="favicon.ico">
 
   <title>Admin - UTeM Attendance System</title>
 
@@ -43,10 +55,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">ADP - Administrator</a>
       </div>
+      
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
+         
+         <li>WELCOME <?php echo $test ["LECTURER_ID"] ?></li>
+       
           <li><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -55,33 +70,40 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar">
+      
+     <!-- <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li><a href="mainpage.php">Register Subject</a></li>
-          <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
-          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
-          <li><a href="subjectUpdate.php">List Subject Registered</a></li>
-           <li><a href="list_lecturer.php">List Lecturer</a></li>
+          <li class="active"><a href="register_lecturer.php"> <span class="sr-only">(current)</span></a></li>
+          <li><a href="">Upload Class</a></li>
+          <li><a href="">Class</a></li>
+          <li><a href="">Student Attendance</a></li>
+           <li><a href="">Report</a></li>
+           
         </ul>
-      </div>
+      </div>-->
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <h2 class="sub-header">Register Subject</h2>
+        <h3 class="sub-header">Class </h3>
         <form action="subject.php" method="post" class="form-horizontal">
-          <div class="form-group">
-            <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+          <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
+          <div class="col-sm-2 ">
               <input type="text" name="code_subject" class="form-control" placeholder="Code">
             </div>
           </div>
           <div class="form-group">
-            <label for="subject_name" class="col-sm-2 control-label">Subject Name</label>
-            <div class="col-sm-10">
-              <input type="text" name="subject_name" class="form-control" placeholder="Subject Name">
+            <label for="subject_name" class="col-sm-2 control-label">Group</label>
+            <div class="col-sm-2">
+              <input type="text" name="subject_name" class="form-control" placeholder="">
             </div>
           </div>
           <div class="form-group">
-            <label for="type_subject" class="col-sm-2 control-label">Subject Type</label>
+            <p>
+              <label for="type_subject" class="col-sm-2 control-label" placeholder="Upload Class"></label>
+            </p>
+            <p><input name="csv" type="file" id="csv" class="form-control"/>
+              <input  type="submit" name="Submit" value="SUBMIT" align="center"/>
+            </p>
             <div class="col-sm-10">
               <select class="form-control" name="type_subject">
                 <option>Choose</option>
@@ -111,5 +133,7 @@
   <script src="holder.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="ie10-viewport-bug-workaround.js"></script>
+  <?php
+  }?>
 </body>
 </html>
