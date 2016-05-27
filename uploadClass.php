@@ -1,16 +1,4 @@
-<?php 
-$conn = oci_connect('system','oracle','XE');
-session_start();
 
-if(!isset($_SESSION['LECTURER_ID'])) header ('location: ');
-$LECTURER_ID = $_SESSION['LECTURER_ID'];
-$sql = "select * from LECTURER WHERE LECTURER_ID = '$LECTURER_ID'";
-$objParse = oci_parse ($conn,$sql);
-oci_execute ($objParse, OCI_DEFAULT);
-while ($test = oci_fetch_assoc ($objParse))
-{	
- 
-?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -71,16 +59,7 @@ while ($test = oci_fetch_assoc ($objParse))
   <div class="container-fluid">
     <div class="row">
       
-     <!-- <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          <li class="active"><a href="register_lecturer.php"> <span class="sr-only">(current)</span></a></li>
-          <li><a href="">Upload Class</a></li>
-          <li><a href="">Class</a></li>
-          <li><a href="">Student Attendance</a></li>
-           <li><a href="">Report</a></li>
-           
-        </ul>
-      </div>-->
+    
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
         <h3 class="sub-header">Class </h3>
@@ -88,31 +67,35 @@ while ($test = oci_fetch_assoc ($objParse))
         <div class="form-group">
           <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
           <div class="col-sm-2 ">
-              <input type="text" name="code_subject" class="form-control" placeholder="Code">
+              <select class="form-control" name="code_subject" placeholder="Code">
+                <option>Choose</option>
+                <option value="BITP 1121 Programming Database">BITP 1121 Programming Database</option>
+                <option value="BITP 1231 Database">BITP 1231 Database</option>
+                
+              </select>
             </div>
           </div>
           <div class="form-group">
             <label for="subject_name" class="col-sm-2 control-label">Group</label>
             <div class="col-sm-2">
-              <input type="text" name="subject_name" class="form-control" placeholder="">
+              <select class="form-control" name="groupname" placeholder="Code">
+                <option>Choose</option>
+                <option value="1 BITC S1G1">1 BITC S1G1</option>
+                <option value="1 BITC S1G2">1 BITC S1G2</option>
+                
+              </select>
             </div>
           </div>
           <div class="form-group">
             <p>
               <label for="type_subject" class="col-sm-2 control-label" placeholder="Upload Class"></label>
             </p>
+            <div class="col-md-5">
             <p><input name="csv" type="file" id="csv" class="form-control"/>
               <input  type="submit" name="Submit" value="SUBMIT" align="center"/>
             </p>
-            <div class="col-sm-10">
-              <select class="form-control" name="type_subject">
-                <option>Choose</option>
-                <option value="Course Core Subject">Course Core Subject</option>
-                <option value="Program Core Subject">Program Core Subject</option>
-                <option value="University Subject">University Subject</option>
-              </select>
             </div>
-          </div>
+            
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-primary">Register</button>
@@ -133,7 +116,6 @@ while ($test = oci_fetch_assoc ($objParse))
   <script src="holder.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="ie10-viewport-bug-workaround.js"></script>
-  <?php
-  }?>
+ 
 </body>
 </html>

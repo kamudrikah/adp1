@@ -24,6 +24,7 @@ else
 	
 if ($row['STATUS'] == 'admin')	
 	{
+		$_SESSION["lecturer_name"] = $row['LECTURER_NAME'];
 		$_SESSION["lecturer_id"] = $_POST['lecturer_id'];
 		Echo"<script language = 'Javascript'>
 					alert('SUCCESSFUL LOGIN !')
@@ -31,6 +32,7 @@ if ($row['STATUS'] == 'admin')
 	}
 	elseif ($row['STATUS'] == 'lecturer')	
 	{
+		$_SESSION["lecturer_name"] = $row['LECTURER_NAME'];
 		$_SESSION["lecturer_id"] = $_POST['lecturer_id'];
 		Echo"<script language = 'Javascript'>
 					alert('SUCCESSFUL LOGIN !')

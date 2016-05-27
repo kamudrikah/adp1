@@ -2,9 +2,9 @@
 $conn = oci_connect('system','oracle','XE');
 session_start();
 
-if(!isset($_SESSION["LECTURER_ID"])) header ('location: ');
-$LECTURER_ID = $_SESSION["LECTURER_ID"];
-$sql = "select * from LECTURER WHERE LECTURER_ID = '$LECTURER_ID'";
+if(!isset($_SESSION['lecturer_id'])) header ('location: ');
+$LECTURER_ID = $_SESSION['lecturer_id'];
+$sql = "select * from LECTURER WHERE LECTURER_ID = '".$LECTURER_ID."'";
 $objParse = oci_parse ($conn,$sql);
 oci_execute ($objParse, OCI_DEFAULT);
 while ($test = oci_fetch_assoc ($objParse))
@@ -60,7 +60,7 @@ while ($test = oci_fetch_assoc ($objParse))
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
          
-         <li>WELCOME </li>
+         <li>WELCOME <?php echo $_SESSION["lecturer_name"];?>  </li>
        
           <li><a href="logout.php">Logout</a></li>
         </ul>
