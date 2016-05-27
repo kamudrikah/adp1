@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+#holder {
+	width:1000px;
+	height:1400px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:21px;
+	margin-bottom:21px;
+	}
+	
+	#toptitle {
+		text-align:center;
+		width:1000px;
+		font-size:25px;
+		height:30px;
+		padding-top:40px;
+		padding-bottom:40px;
+		}
+		
+#topcontainer {
+	width:1000px;
+	height:180px;
+	
+	}
+	
+#topleft {
+	width:700px;
+	height:180px;
+	float:right;
+	}
+	
+	
+#topright {
+	width:300px;
+	height:180px;
+	float:left;
+	}
+	
+	
+	#centertop {
+	width:1000px;
+	height:280px;
+	float:left;
+	}
+	
+	
+	#centerbottom {
+	width:1000px;
+	height:320px;
+	float:left;
+	}
+	
+	#bottomleft {
+		height:auto;
+		width:400px;
+		float:left;}
+		
+		#bottomright {
+		height:437px;
+		width:400px;
+		float:right;}
+		
+		

@@ -22,7 +22,7 @@ while ($test = oci_fetch_assoc ($objParse))
   <meta name="author" content="">
   <link rel="icon" href="file:///C|/xampp/htdocs/favicon.ico">
 
-  <title>Admin - UTeM Attendance System</title>
+  <title>UTeM Attendance System</title>
  
   <!-- Bootstrap core CSS -->
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@ while ($test = oci_fetch_assoc ($objParse))
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
          
-         <li>WELCOME <?php echo $_SESSION["lecturer_name"];?>  </li>
+         <li>  </li>
        
           <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -73,52 +73,49 @@ while ($test = oci_fetch_assoc ($objParse))
       
      <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="uploadClass.php"> <span class="sr-only">(current)</span></a></li>
-          <li><a href="">Upload Class</a></li>
-          <li><a href="">Class</a></li>
+          
+          <li><a href="uploadClass.php">Upload Class</a></li>
+          <li><a href="list_student.php">Class</a></li>
           <li><a href="">Student Attendance</a></li>
            <li><a href="">Report</a></li>
            
         </ul>
       </div>
+      
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+      <h2>Welcome <?php echo $_SESSION["lecturer_name"];?></h2><br><br>
         <h3 class="sub-header">Class </h3>
-        <form action="subject.php" method="post" class="form-horizontal">
+        <!--<form action="" method="post" class="form-horizontal">
         <div class="form-group">
           <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
-          <div class="col-sm-2 ">
-              <input type="text" name="code_subject" class="form-control" placeholder="Code">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="subject_name" class="col-sm-2 control-label">Group</label>
-            <div class="col-sm-2">
-              <input type="text" name="subject_name" class="form-control" placeholder="">
-            </div>
-          </div>
-          <div class="form-group">
-            <p>
-              <label for="type_subject" class="col-sm-2 control-label" placeholder="Upload Class"></label>
-            </p>
-            <p><input name="csv" type="file" id="csv" class="form-control"/>
-              <input  type="submit" name="Submit" value="SUBMIT" align="center"/>
-            </p>
-            <div class="col-sm-10">
-              <select class="form-control" name="type_subject">
+          <div class="col-sm-5 ">
+              <select class="form-control" name="code_subject" placeholder="Code">
                 <option>Choose</option>
-                <option value="Course Core Subject">Course Core Subject</option>
-                <option value="Program Core Subject">Program Core Subject</option>
-                <option value="University Subject">University Subject</option>
+                <option value="BITP 1121 Programming Database">BITP 1121 Programming Database</option>
+                <option value="BITP 1231 Database">BITP 1231 Database</option>
+                
               </select>
-            </div>
           </div>
+         </div>
+           <div class="form-group">
+          <label for="group_id" class="col-sm-2 control-label">Group</label>
+          <div class="col-sm-2 ">
+              <select class="form-control" name="group_id" placeholder="Code">
+                <option>Choose</option>
+                <option value="1 BITC S1G1">1 BITC S1G1</option>
+                <option value="1 BITC S1G2">1 BITC S1G2</option>
+                
+              </select>
+             </div>
+         </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Register</button>
+          <label for="type" class="col-sm-2 control-label">Upload Student</label>
+          <div class="col-sm-5 ">
+              <p><input name="csv" type="file" id="csv" class="form-control" class="col-sm-5"/> <br>
+                 <input type="submit" name="Submit" value="SUBMIT" align="center"/>
             </div>
-          </div>
-        </form>
+         </div>
+          </form>-->
       </div>
     </div>
   </div>

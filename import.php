@@ -1,7 +1,3 @@
-<?php 
-$conn = oci_connect('system','oracle','XE');
-session_start();
-?>
 <?php if (isset($_GET['success'])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?> 
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1" action="ImportSchedule.php"> 
 
@@ -83,14 +79,14 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 
    
 // SQL Query to insert data into DataBase
-$query = "INSERT INTO STUDENT(STUD_BIL, MATRIC_NO, STUD_NAME, STUD_GROUP, STUD_FACULTY, STUD_COURSE) VALUES('".$col1."','".$col2."','".$col3."','".$col4."','".$col5."', '".$col6."' )";
+$query = "INSERT INTO STUDENT(STUD_BIL, MATRIC_NO, STUD_NAME, STUD_GROUP, STUD_FACULTY, STUD_COURSE) VALUES('".$col1."''".$col2."','".$col3."','".$col4."','".$col5."', '".$col6."' )";
 $objParse = oci_parse($conn, $query);  
 $objExecute = oci_execute($objParse);
 }
 } 
 } while ($data = fgetcsv($handle,1000,",","'"));     // 
 fclose($handle);
-echo "CSV File has been successfully Imported. Click <a href='list_student.php'>here</a> to view.";
+echo "CSV File has been successfully Imported. Click <a href='mainlecturer.php'>here</a> to view.";
 
 
 }

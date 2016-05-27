@@ -95,7 +95,7 @@ oci_execute($curs);
 <th width="187"> <div align="center">Lecturer Position</div></th>  
 <th width="148"> <div align="center">Email</div></th>  
   
-<th width="128"> <div align="center">Action </div></th> 
+<th width="128"> <div align="center">Status </div></th> 
 
 </tr> 
 

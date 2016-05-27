@@ -1,33 +1,36 @@
 <?php
-$conn = oci_connect('psm', 'psm', 'XE');
+     $conn = oci_connect('system','oracle','XE');
+    ob_start();
+    $current_file=$_SERVER['SCRIPT_NAME'];
+    $massage= "";
+	
 
-session_start();
+$LECTURER_ID = $_POST['lecturer_id'];
+$LECTURER_NAME = $_POST['lecturer_name'];
+$PHONENO = $_POST['phoneNo'];
+$LECTURER_POSITION = $_POST['lecturer_position'];
+$LECTURER_EMAIL = $_POST['lecturer_email'];
+$PWORD = $_POST['pword'];
+$STATUS = $_POST['status'];
 
-if(!isset($_SESSION['ID_CARD'])) header ('location: ');
-$ID_CARD = $_SESSION['ID_CARD'];
-$sql = "select * from employee WHERE ID_CARD = '$ID_CARD'";
-$objParse = oci_parse ($conn,$sql);
-oci_execute ($objParse, OCI_DEFAULT);
-while ($test = oci_fetch_assoc ($objParse))
-{
+       
+	         $sql = 'begin insert_lecturer(:c1,:c2,:c3,:c4,:c5,:c6,:c7);end;';
+                $stid = oci_parse($conn,$sql);
+                $r = @oci_execute($stid);
+				oci_bind_by_name($stid,':c1',$LECTURER_ID);
+				oci_bind_by_name($stid,':c2',$LECTURER_NAME);
+				oci_bind_by_name($stid,':c3',$PHONENO);
+				oci_bind_by_name($stid,':c4',$LECTURER_POSITION);
+				oci_bind_by_name($stid,':c5',$LECTURER_EMAIL);
+				oci_bind_by_name($stid,':c6',$PWORD);
+				oci_bind_by_name($stid,':c7',$STATUS);
+				oci_execute($stid);
+				//var_dump($sql);
+				
+             echo"<script language = 'Javascript'>
+					alert('Done added lecturer in your system.')
+					location.href ='login.php' </script>";
 
+	oci_close($conn);
 ?>
 
-<div class="container" align="right">
-       <h4 class = "tagline"> WELCOME <?php echo $test ["USERNAME"] ?> </h4>
-<?php
-}
-
-<?php 
-$conn = oci_connect('system','oracle','XE');
-session_start();
-
-if(!isset($_SESSION["LECTURER_ID"])) header ('location: ');
-$LECTURER_ID = $_SESSION["LECTURER_ID"];
-$sql = "select * from LECTURER WHERE LECTURER_ID = '$LECTURER_ID'";
-$objParse = oci_parse ($conn,$sql);
-oci_execute ($objParse, OCI_DEFAULT);
-while ($test = oci_fetch_assoc ($objParse))
-{	
- 
-?>

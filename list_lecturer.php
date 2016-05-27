@@ -55,7 +55,7 @@ while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
 <th width="235"> <div align="center">Lecturer Position</div></th>  
 <th width="105"> <div align="center">Email</div></th>  
   
-<th width="132"> <div align="center">Action </div></th> 
+<th width="132"> <div align="center">Status </div></th> 
 
 </tr> 
 
