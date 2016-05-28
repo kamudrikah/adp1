@@ -17,22 +17,29 @@ oci_execute ($objParse,OCI_DEFAULT);
 
 <table width="1000" border="1">  
 <tr>  
+<th width="143"> <div align="center">NO BIL</div></th>
 <th width="143"> <div align="center">MATRIC NUMBER </div></th>
 <th width="131"> <div align="center">FULL NAME  </div></th>  
-<th width="157"> <div align="center">FACULTY  </div></th> 
-<th width="128"> <div align="center">COURSE </div></th> 
+<th width="157"> <div align="center">YEAR  </div></th> 
+<th width="128"> <div align="center">COURSE </div></th>
+<th width="251"> <div align="center">SESSION </div></th> 
 <th width="251"> <div align="center">GROUP </div></th>
+<th width="251"> <div align="center">FACULTY </div></th>
 </tr> 
 <?php 
 while($objResult = oci_fetch_array($objParse,OCI_BOTH))  
 {  
 ?>  
 <tr>  
-<td><div  align="center"><?=$objResult["matric_no"];?></td>  
-<td><div  align="center"><?=$objResult["stud_name"];?></td>  
-<td><div  align="center"><?=$objResult["stud_faculty"];?></td>
-<td><div  align="center"><?=$objResult["stud_course"];?></td>
-<td><div  align="center"><?=$objResult["stud_group"];?></td>  
+<td><div  align="center"><?=$objResult["STUD_BIL"];?></td>  
+<td><div  align="center"><?=$objResult["MATRIC_NO"];?></td>  
+<td><div  align="center"><?=$objResult["STUD_NAME"];?></td>
+<td><div  align="center"><?=$objResult["STUD_YEAR"];?></td>
+<td><div  align="center"><?=$objResult["STUD_COURSE"];?></td>
+<td><div  align="center"><?=$objResult["STUD_SESSION"];?></td>
+<td><div  align="center"><?=$objResult["STUD_GROUP"];?></td>
+<td><div  align="center"><?=$objResult["STUD_FACULTY"];?></td>
+
 
 </tr>  
 <?php  

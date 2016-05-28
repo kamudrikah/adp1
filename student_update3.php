@@ -7,20 +7,16 @@ $conn = oci_connect('system','oracle','XE');
   	  	$e = oci_error();
     	trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 		}
-		
-		
-		$lecturer_id = $_POST['LECTURER_ID'];
-		$lecturer_name = $_POST['LECTURER_NAME'];
-		$phoneNo = $_POST['PHONENO'];
-		$lecturer_position = $_POST['LECTURER_POSITION'];
-		$lecturer_email = $_POST['LECTURER_EMAIL'];
-		$pword = $_POST['PWORD'];
-		$status = $_POST['STATUS'];
 		  
-		  $strSQL = "UPDATE LECTURER SET LECTURER_NAME='$lecturer_name' , PHONENO='$phoneNo',
-		  LECTURER_POSITION='$lecturer_position' , LECTURER_EMAIL='$lecturer_email',
-		  PWORD='$pword', STATUS='$status' WHERE LECTURER_ID='$lecturer_id'";  
-			
+		  $strSQL = "UPDATE STUDENT SET ";  
+			$strSQL .="MATRIC_NO = '".$_POST["MATRIC_NO"]."' ";  
+			$strSQL .=",STUD_NAME = '".$_POST["STUD_NAME"]."' ";  
+			$strSQL .=",STUD_YEAR = '".$_POST["STUD_YEAR"]."' ";  
+			$strSQL .=",STUD_COURSE = '".$_POST["STUD_COURSE"]."' ";  
+			$strSQL .=",STUD_SESSION = '".$_POST["STUD_SESSION"]."' "; 
+			$strSQL .=",STUD_GROUP = '".$_POST["STUD_GROUP"]."' ";  
+			$strSQL .=",STUD_FACULTY = '".$_POST["STUD_FACULTY"]."' ";  
+			$strSQL .="WHERE MATRIC_NO = '".$_GET["MATRIC_NO"]."' ";  
 			$objParse = oci_parse($conn, $strSQL);  
 			$objExecute = oci_execute($objParse, OCI_DEFAULT);  
 			if($objExecute)  
@@ -28,7 +24,7 @@ $conn = oci_connect('system','oracle','XE');
 			oci_commit($conn);
 			Echo"<script language = 'Javascript'>
 								 alert('Update success')
-								  location.href = 'list_lecturer.php'</script>";
+								  location.href = 'list_student.php</script>";
 			}  
 			else  
 			{  

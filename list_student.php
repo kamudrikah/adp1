@@ -119,7 +119,7 @@ while ($test = oci_fetch_assoc ($objParse))
                 <option value="FPTT">FPTT</option>
               </select>
             </div>
-          </div>
+          </div>	
            <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-primary">Register</button>
@@ -127,7 +127,7 @@ while ($test = oci_fetch_assoc ($objParse))
           </div>
 <form class="form-horizontal" method="POST">
 <h2 class="sub-header">List Student</h2>
-<br>
+<h4>Class : </h4>
 <?php  
 $conn = oci_connect('system','oracle','XE');
 
@@ -164,8 +164,14 @@ while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
 <tr>
 <th width="50"> <div align="center">No.</div></th> 
 <th width="126"> <div align="center">Matric Number</div></th>    
-<th width="351"> <div align="center">Student Name </div></th>  
+<th width="351"> <div align="center">Student Name </div></th>
+<th width="50"> <div align="center">Year </div></th>
+<th width="50"> <div align="center">Course </div></th>
+<th width="50"> <div align="center">Session </div></th> 
+<th width="50"> <div align="center">Group </div></th>  
+<th width="50"> <div align="center">Faculty</div></th>  
 <th width="131"> <div align="center">Action </div></th> 
+
 
 </tr> 
 
@@ -176,8 +182,13 @@ while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
 <tr>  
 <td><div align="center"><?php echo $row['STUD_BIL'];?></div></td>  
 <td><div align="center"><?php echo $row['MATRIC_NO'];?></div></td>  
-<td><div align="center"><?php echo $row['STUD_NAME'];?></div></td>  
-<td align="center"><a href="stud_update.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">UPDATE</a>||<a href="stud_delete.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">DELETE</a></td>
+<td><div align="center"><?php echo $row['STUD_NAME'];?></div></td> 
+<td><div align="center"><?php echo $row['STUD_YEAR'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_COURSE'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_SESSION'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_GROUP'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_FACULTY'];?></div></td>
+<td><div align="center"><a href="student_update2.php"?MATRIC_NO=<?=$row['MATRIC_NO'];?>"UPDATE"</a>||<a href="student_delete.php"?MATRIC_NO=<?=$row['MATRIC_NO'];?>"DELETE"</td>
   
 </tr>  
 <?php  
@@ -191,9 +202,8 @@ oci_close($conn);
 				
  ?>    
   
-      </div>
-    </div>
-  </div>
+      
+ 
 
   <!-- Bootstrap core JavaScript
   ================================================== -->

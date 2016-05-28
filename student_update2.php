@@ -2,17 +2,15 @@
 $conn = oci_connect('system','oracle','XE');
 session_start();
 
-if(!isset($_SESSION['lecturer_id'])) header ('location: ');
-$LECTURER_ID = $_SESSION['lecturer_id'];
-$sql = "select * from LECTURER WHERE LECTURER_ID = '".$LECTURER_ID."'";
-$objParse = oci_parse ($conn,$sql);
-oci_execute ($objParse, OCI_DEFAULT);
-while ($test = oci_fetch_assoc ($objParse))
-{	
-}
+$MATRIC_NO=$_GET['MATRIC_NO'];
+$sql = "select * from STUDENT WHERE MATRIC_NO = '".$MATRIC_NO."'";
+$stid = oci_parse ($conn,$sql);
+oci_execute ($stid, OCI_DEFAULT);
+$result = oci_fetch_assoc($stid);
+
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +20,8 @@ while ($test = oci_fetch_assoc ($objParse))
   <meta name="author" content="">
   <link rel="icon" href="file:///C|/xampp/htdocs/favicon.ico">
 
-  <title>UTeM Attendance System</title>
- 
+  <title>Admin - UTeM Attendance System</title>
+
   <!-- Bootstrap core CSS -->
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -55,13 +53,11 @@ while ($test = oci_fetch_assoc ($objParse))
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-      </div>
+        <a class="navbar-brand" href="#">ADP - Administrator</a>
       
+      </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-         
-         <li>  </li>
-       
           <li><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -70,51 +66,57 @@ while ($test = oci_fetch_assoc ($objParse))
 
   <div class="container-fluid">
     <div class="row">
-      
-     <div class="col-sm-3 col-md-2 sidebar">
+      <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          
-          <li><a href="list_student.php">Class</a></li>
-          <li><a href="">Student Attendance</a></li>
-           <li><a href="">Report</a></li>
-           
+          <li><a href="mainpage.php">Register Subject</a></li>
+          <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
+          <li><a href="uploadClass.php">Upload Student</a></li>
+          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
+          <li><a href="subjectUpdate.php">List Subject Registered</a></li>
+           <li><a href="list_lecturer.php">List Lecturer</a></li>
+            <li><a href="list_student.php">List Student</a></li>
         </ul>
       </div>
-      
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h2>Welcome <?php echo $_SESSION["lecturer_name"];?></h2><br><br>
-        <h3 class="sub-header">Class </h3>
-        <!--<form action="" method="post" class="form-horizontal">
-        <div class="form-group">
-          <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
-          <div class="col-sm-5 ">
-              <select class="form-control" name="code_subject" placeholder="Code">
-                <option>Choose</option>
-                <option value="BITP 1121 Programming Database">BITP 1121 Programming Database</option>
-                <option value="BITP 1231 Database">BITP 1231 Database</option>
-                
-              </select>
-          </div>
-         </div>
-           <div class="form-group">
-          <label for="group_id" class="col-sm-2 control-label">Group</label>
-          <div class="col-sm-2 ">
-              <select class="form-control" name="group_id" placeholder="Code">
-                <option>Choose</option>
-                <option value="1 BITC S1G1">1 BITC S1G1</option>
-                <option value="1 BITC S1G2">1 BITC S1G2</option>
-                
-              </select>
-             </div>
-         </div>
-          <div class="form-group">
-          <label for="type" class="col-sm-2 control-label">Upload Student</label>
-          <div class="col-sm-5 ">
-              <p><input name="csv" type="file" id="csv" class="form-control" class="col-sm-5"/> <br>
-                 <input type="submit" name="Submit" value="SUBMIT" align="center"/>
+
+        <h2 class="sub-header">Update Student</h2>
+        <form action="student_update3.php" method="post" class="form-horizontal">
+              <div class="form-group">
+            <label for="matric_no" class="col-sm-2 control-label">Matric Number</label>
+            <div class="col-sm-6">
+              <input type="text" name="matric_no" class="form-control" value="<?php echo $result['matric_no'];?>" readonly>
             </div>
-         </div>
-          </form>-->
+          </div>
+          <div class="form-group">
+            <label for="stud_name" class="col-sm-2 control-label">Student Name</label>
+            <div class="col-sm-6">
+              <input type="text" name="stud_name" class="form-control" value="<?php echo $result['stud_name'];?>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stud_group" class="col-sm-2 control-label">Group Class</label>
+            <div class="col-sm-4">
+             <input type="text" name="stud_year" class="form-control" value="<?php echo $result['stud_year'];?>" >
+             <input type="text" name="stud_course" class="form-control" value="<?php echo $result['stud_course'];?>" >
+             <input type="text" name="stud_session" class="form-control" value="<?php echo $result['stud_session'];?>" >
+             <input type="text" name="stud_group" class="form-control" value="<?php echo $result['stud_group'];?>">
+           </div>
+           </div>
+          
+                
+          <div class="form-group">
+            <label for="stud_faculty" class="col-sm-2 control-label">Faculty</label>
+            <div class="col-sm-4">
+            <input type="text" name="stud_faculty" class="form-control" value="<?php echo $result['stud_faculty'];?>">
+              
+            </div>
+          </div>	
+           <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -129,6 +131,5 @@ while ($test = oci_fetch_assoc ($objParse))
   <script src="holder.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="ie10-viewport-bug-workaround.js"></script>
- 
 </body>
 </html>

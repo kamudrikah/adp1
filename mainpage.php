@@ -76,6 +76,7 @@ while ($test = oci_fetch_assoc ($objParse))
           <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
           <li><a href="subjectUpdate.php">List Subject Registered</a></li>
            <li><a href="list_lecturer.php">List Lecturer</a></li>
+            <li><a href="list_student.php">List Student</a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
