@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $conn = oci_connect('system','oracle','XE');
@@ -7,16 +8,25 @@ $conn = oci_connect('system','oracle','XE');
   	  	$e = oci_error();
     	trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 		}
+		
+		$matric_no = $_POST['matric_no'];
+		$stud_name= $_POST['stud_name'];
+		$stud_year = $_POST['stud_year'];
+		$stud_course = $_POST['stud_course'];
+		$stud_session = $_POST['stud_session'];
+		$stud_group = $_POST['stud_group'];
+		$stud_faculty = $_POST['stud_faculty'];
 		  
-		  $strSQL = "UPDATE STUDENT SET ";  
-			$strSQL .="MATRIC_NO = '".$_POST["MATRIC_NO"]."' ";  
-			$strSQL .=",STUD_NAME = '".$_POST["STUD_NAME"]."' ";  
-			$strSQL .=",STUD_YEAR = '".$_POST["STUD_YEAR"]."' ";  
-			$strSQL .=",STUD_COURSE = '".$_POST["STUD_COURSE"]."' ";  
-			$strSQL .=",STUD_SESSION = '".$_POST["STUD_SESSION"]."' "; 
-			$strSQL .=",STUD_GROUP = '".$_POST["STUD_GROUP"]."' ";  
-			$strSQL .=",STUD_FACULTY = '".$_POST["STUD_FACULTY"]."' ";  
-			$strSQL .="WHERE MATRIC_NO = '".$_GET["MATRIC_NO"]."' ";  
+		  $strSQL = "UPDATE STUDENT SET 
+		  MATRIC_NO='$matric_no',
+		  STUD_NAME='$stud_name',
+		  STUD_YEAR='$stud_year',
+		  STUD_COURSE='$stud_course',
+		  STUD_SESSION='$stud_session', 
+		  STUD_GROUP='$stud_group',
+		  STUD_FACULTY='$stud_faculty'
+		  WHERE MATRIC_NO='$matric_no'";  
+			
 			$objParse = oci_parse($conn, $strSQL);  
 			$objExecute = oci_execute($objParse, OCI_DEFAULT);  
 			if($objExecute)  
@@ -24,7 +34,7 @@ $conn = oci_connect('system','oracle','XE');
 			oci_commit($conn);
 			Echo"<script language = 'Javascript'>
 								 alert('Update success')
-								  location.href = 'list_student.php</script>";
+								  location.href = 'list_student.php'</script>";
 			}  
 			else  
 			{  
@@ -36,6 +46,22 @@ $conn = oci_connect('system','oracle','XE');
 			}  
 			oci_close($conn);  
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

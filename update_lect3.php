@@ -9,36 +9,43 @@ $conn = oci_connect('system','oracle','XE');
 		}
 		
 		
-		$lecturer_id = $_POST['LECTURER_ID'];
-		$lecturer_name = $_POST['LECTURER_NAME'];
-		$phoneNo = $_POST['PHONENO'];
-		$lecturer_position = $_POST['LECTURER_POSITION'];
-		$lecturer_email = $_POST['LECTURER_EMAIL'];
-		$pword = $_POST['PWORD'];
-		$status = $_POST['STATUS'];
+		$LECTURER_ID = $_POST["LECTURER_ID"];
+		$LECTURER_NAME = $_POST["LECTURER_NAME"];
+		$PHONENO = $_POST["PHONENO"];
+		$LECTURER_POSITION = $_POST["LECTURER_POSITION"];
+		$LECTURER_EMAIL = $_POST["LECTURER_EMAIL"];
+		$PWORD = $_POST["PWORD"];
+		$STATUS = $_POST["STATUS"];
 		  
-		  $strSQL = "UPDATE LECTURER SET LECTURER_NAME='$lecturer_name' , PHONENO='$phoneNo',
-		  LECTURER_POSITION='$lecturer_position' , LECTURER_EMAIL='$lecturer_email',
-		  PWORD='$pword', STATUS='$status' WHERE LECTURER_ID='$lecturer_id'";  
+		$sql ='begin updatelecturer_proc(:a1,:a2,:a3,:a4,:a5,:a6,:a7);end;';
+
+                $stid = oci_parse($conn,$sql);
+				oci_bind_by_name($stid,':a1',$LECTURER_ID);
+				oci_bind_by_name($stid,':a2',$LECTURER_NAME);
+				oci_bind_by_name($stid,':a3',$PHONENO);
+				oci_bind_by_name($stid,':a4',$LECTURER_POSITION);
+				oci_bind_by_name($stid,':a5',$LECTURER_EMAIL);
+				oci_bind_by_name($stid,':a6',$PWORD);
+				oci_bind_by_name($stid,':a7',$STATUS);
 			
-			$objParse = oci_parse($conn, $strSQL);  
-			$objExecute = oci_execute($objParse, OCI_DEFAULT);  
-			if($objExecute)  
-			{  
-			oci_commit($conn);
-			Echo"<script language = 'Javascript'>
-								 alert('Update success')
-								  location.href = 'list_lecturer.php'</script>";
-			}  
-			else  
-			{  
-			oci_rollback($conn);
-			$e = oci_error($objParse);  
-			Echo"<script language = 'Javascript'>
-								 alert('Update fail')
-								 location.href = '#'</script>";
-			}  
-			oci_close($conn);  
+                $r = @oci_execute($stid,OCI_COMMIT_ON_SUCCESS);
+                if($r)
+                {
+                    Echo"<script language = 'Javascript'>
+     				 alert('Update success')
+     				  location.href = 'list_lecturer.php'</script>";
+                   
+                }
+                else
+                {
+                   
+                     Echo"<script language = 'Javascript'>
+     				 alert('Update fail')
+     				 location.href = '#'</script>";
+                    
+                }
+oci_free_statement($stid);
+ oci_close($conn);
 ?>
 
 

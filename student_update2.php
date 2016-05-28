@@ -3,7 +3,7 @@ $conn = oci_connect('system','oracle','XE');
 session_start();
 
 $MATRIC_NO=$_GET['MATRIC_NO'];
-$sql = "select * from STUDENT WHERE MATRIC_NO = '".$MATRIC_NO."'";
+$sql = "select * from STUDENT WHERE MATRIC_NO ='".$MATRIC_NO."'";
 $stid = oci_parse ($conn,$sql);
 oci_execute ($stid, OCI_DEFAULT);
 $result = oci_fetch_assoc($stid);
@@ -84,22 +84,22 @@ $result = oci_fetch_assoc($stid);
               <div class="form-group">
             <label for="matric_no" class="col-sm-2 control-label">Matric Number</label>
             <div class="col-sm-6">
-              <input type="text" name="matric_no" class="form-control" value="<?php echo $result['matric_no'];?>" readonly>
+              <input type="text" name="matric_no" class="form-control" value="<?php echo $result['MATRIC_NO'];?>" readonly>
             </div>
           </div>
           <div class="form-group">
             <label for="stud_name" class="col-sm-2 control-label">Student Name</label>
             <div class="col-sm-6">
-              <input type="text" name="stud_name" class="form-control" value="<?php echo $result['stud_name'];?>">
+              <input type="text" name="stud_name" class="form-control" value="<?php echo $result['STUD_NAME'];?>">
             </div>
           </div>
           <div class="form-group">
             <label for="stud_group" class="col-sm-2 control-label">Group Class</label>
             <div class="col-sm-4">
-             <input type="text" name="stud_year" class="form-control" value="<?php echo $result['stud_year'];?>" >
-             <input type="text" name="stud_course" class="form-control" value="<?php echo $result['stud_course'];?>" >
-             <input type="text" name="stud_session" class="form-control" value="<?php echo $result['stud_session'];?>" >
-             <input type="text" name="stud_group" class="form-control" value="<?php echo $result['stud_group'];?>">
+             <input type="text" name="stud_year" class="form-control" value="<?php echo $result['STUD_YEAR'];?>" >
+             <input type="text" name="stud_course" class="form-control" value="<?php echo $result['STUD_COURSE'];?>" >
+             <input type="text" name="stud_session" class="form-control" value="<?php echo $result['STUD_SESSION'];?>" >
+             <input type="text" name="stud_group" class="form-control" value="<?php echo $result['STUD_GROUP'];?>">
            </div>
            </div>
           
@@ -107,7 +107,7 @@ $result = oci_fetch_assoc($stid);
           <div class="form-group">
             <label for="stud_faculty" class="col-sm-2 control-label">Faculty</label>
             <div class="col-sm-4">
-            <input type="text" name="stud_faculty" class="form-control" value="<?php echo $result['stud_faculty'];?>">
+            <input type="text" name="stud_faculty" class="form-control" value="<?php echo $result['STUD_FACULTY'];?>">
               
             </div>
           </div>	

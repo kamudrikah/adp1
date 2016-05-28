@@ -47,11 +47,10 @@ if (!$conn)
 {
 	die ("Connection failed:".oci_connect_error()) ;
 }
-
-$deleterecords = "TRUNCATE TABLE STUDENT";
+/*$deleterecords = "TRUNCATE TABLE STUDENT";
 $objParse = oci_parse ($conn, $deleterecords);  
 oci_execute ($objParse);
-
+*/
 ?>
 
 <?php
@@ -80,16 +79,17 @@ if (($handle = fopen($file, "r")) !== FALSE) {
  $col5 = $col[4];
  $col6 = $col[5];
  $col7 = $col[6];
+ $col8 = $col[7];
 
 
    
 // SQL Query to insert data into DataBase
-$query = "INSERT INTO STUDENT(STUD_BIL, MATRIC_NO, STUD_NAME, STUD_YEAR , STUD_COURSE , STUD_SESSION , STUD_FACULTY) VALUES('".$col1."','".$col2."','".$col3."','".$col4."','".$col5."', '".$col6."', '".$col7."')";
+$query = "INSERT INTO STUDENT(STUD_BIL, MATRIC_NO, STUD_NAME, STUD_YEAR , STUD_COURSE , STUD_SESSION , STUD_GROUP, STUD_FACULTY) VALUES('".$col1."','".$col2."','".$col3."','".$col4."','".$col5."', '".$col6."', '".$col7."' , '".$col8."')";
 $objParse = oci_parse($conn, $query);  
 $objExecute = oci_execute($objParse);
 }
 } 
-} while ($data = fgetcsv($handle,1000,",","'"));     // 
+} while ($data = fgetcsv($handle,1000,",","'")); 
 fclose($handle);
 echo "CSV File has been successfully Imported. Click <a href='list_student.php'>here</a> to view.";
 

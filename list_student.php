@@ -79,52 +79,7 @@ while ($test = oci_fetch_assoc ($objParse))
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-        <h2 class="sub-header">Add New Student</h2>
-        <form action="student.php" method="post" class="form-horizontal">
-          <div class="form-group">
-            <label for="matric_no" class="col-sm-2 control-label">Matric Number</label>
-            <div class="col-sm-6">
-              <input type="text" name="matric_no" class="form-control" placeholder="Matric Number">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="stud_name" class="col-sm-2 control-label">Student Name</label>
-            <div class="col-sm-6">
-              <input type="text" name="stud_name" class="form-control" placeholder="Full Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="stud_group" class="col-sm-2 control-label">Group Class</label>
-            <div class="col-sm-4">
-             <input type="text" name="stud_year" class="form-control" placeholder="Year">
-             <input type="text" name="stud_course" class="form-control" placeholder="Course">
-             <input type="text" name="stud_session" class="form-control" placeholder="Session">
-             <input type="text" name="stud_group" class="form-control" placeholder="Group">
-           </div>
-           </div>
-          
-                
-          <div class="form-group">
-            <label for="stud_faculty" class="col-sm-2 control-label">Faculty</label>
-            <div class="col-sm-4">
-              <select class="form-control" name="stud_faculty" placeholder="Code">
-                <option>Faculty</option>
-                <option value="FTMK">FTMK</option>
-                <option value="FKP">FKP</option>
-                <option value="FKEKK">FKEKK</option>
-                <option value="FKE">FKE</option>
-                <option value="FTK">FTK</option>
-                <option value="FKM">FKM</option>
-                <option value="FPTT">FPTT</option>
-              </select>
-            </div>
-          </div>	
-           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-          </div>
+   
 <form class="form-horizontal" method="POST">
 <h2 class="sub-header">List Student</h2>
 <h4>Class : </h4>
@@ -160,9 +115,10 @@ while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
 <?php  
 }
  ?>
+
  <table width="1000" border="1" align="center">  
 <tr>
-<th width="50"> <div align="center">No.</div></th> 
+
 <th width="126"> <div align="center">Matric Number</div></th>    
 <th width="351"> <div align="center">Student Name </div></th>
 <th width="50"> <div align="center">Year </div></th>
@@ -180,7 +136,7 @@ while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
  ?>  
 	 
 <tr>  
-<td><div align="center"><?php echo $row['STUD_BIL'];?></div></td>  
+ 
 <td><div align="center"><?php echo $row['MATRIC_NO'];?></div></td>  
 <td><div align="center"><?php echo $row['STUD_NAME'];?></div></td> 
 <td><div align="center"><?php echo $row['STUD_YEAR'];?></div></td>
@@ -188,13 +144,18 @@ while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
 <td><div align="center"><?php echo $row['STUD_SESSION'];?></div></td>
 <td><div align="center"><?php echo $row['STUD_GROUP'];?></div></td>
 <td><div align="center"><?php echo $row['STUD_FACULTY'];?></div></td>
-<td><div align="center"><a href="student_update2.php"?MATRIC_NO=<?=$row['MATRIC_NO'];?>"UPDATE"</a>||<a href="student_delete.php"?MATRIC_NO=<?=$row['MATRIC_NO'];?>"DELETE"</td>
+<td><div align="center"><a href="student_update2.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">UPDATE</a>||<a href="student_delete.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">DELETE</a></td>
   
 </tr>  
 <?php  
 }
 ?> 
 </table> 
+<br>
+  <div class="col-sm-offset-2 col-sm-10" align="right">
+  <a href="add_student.php" class="btn btn-primary">Add Student</a>
+  </div>
+     
 <?php
 oci_free_statement($stid);
 oci_free_statement($curs);
