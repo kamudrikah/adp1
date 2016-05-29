@@ -73,10 +73,9 @@
 
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="uploadClass.php"> <span class="sr-only">(current)</span></a></li>
           <li><a href="">Upload Class</a></li>
           <li><a href="">Class</a></li>
-          <li><a href="">Student Attendance</a></li>
+          <li class="active"><a href="">Student Attendance</a></li>
           <li><a href="">Report</a></li>
 
         </ul>
