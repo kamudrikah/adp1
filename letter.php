@@ -7,8 +7,11 @@
 </head>
 
 <body>
+<page size="A4">
   <div id="holder" >  		
         <div id="topcontainer">	
+        <img src="image/LogoJawi.png" width="195" height="92" style="padding-right:10px" >
+        <br />
        	<div id="toptitle"><strong>LAPORAN	KEHADIRAN PELAJAR</strong></div>
           <div id="topright" ></div>
           <div id="topleft">

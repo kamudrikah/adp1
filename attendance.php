@@ -1,5 +1,5 @@
 <?php
-$conn = oci_connect('system','oracle','XE');
+$conn = oci_connect('priya', '123', 'localhost/orcl');
 session_start();
 
 if(!isset($_SESSION['matric_no'])) header ('location: ');

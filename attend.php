@@ -12,7 +12,7 @@ while ($test = oci_fetch_assoc ($objParse))
 }
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@ while ($test = oci_fetch_assoc ($objParse))
   <link rel="icon" href="file:///C|/xampp/htdocs/favicon.ico">
 
   <title>UTeM Attendance System</title>
- 
+
   <!-- Bootstrap core CSS -->
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -55,13 +55,11 @@ while ($test = oci_fetch_assoc ($objParse))
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-      </div>
+        <a class="navbar-brand" href="#">ADP - Administrator</a>
       
+      </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-         
-         <li>  </li>
-       
           <li><a href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -70,54 +68,103 @@ while ($test = oci_fetch_assoc ($objParse))
 
   <div class="container-fluid">
     <div class="row">
-      
-     <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          
-          <li><a href="class_student.php">Class</a></li>
-          <li><a href="attend.php">Student Attendance</a></li>
-           <li><a href="">Report</a></li>
-           
+      <div class="col-sm-3 col-md-2 sidebar">
+       <ul class="nav nav-sidebar">
+          <li><a href="mainpage.php">Register Subject</a></li>
+          <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
+          <li><a href="uploadClass.php">Upload Student</a></li>
+          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
+          <li><a href="subjectUpdate.php">List Subject Registered</a></li>
+           <li><a href="list_lecturer.php">List Lecturer</a></li>
         </ul>
       </div>
-      
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h2>Welcome <?php echo $_SESSION["lecturer_name"];?></h2><br><br>
-        <h3 class="sub-header">Class </h3>
-        <!--<form action="" method="post" class="form-horizontal">
-        <div class="form-group">
-          <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
-          <div class="col-sm-5 ">
-              <select class="form-control" name="code_subject" placeholder="Code">
-                <option>Choose</option>
-                <option value="BITP 1121 Programming Database">BITP 1121 Programming Database</option>
-                <option value="BITP 1231 Database">BITP 1231 Database</option>
-                
-              </select>
-          </div>
-         </div>
-           <div class="form-group">
-          <label for="group_id" class="col-sm-2 control-label">Group</label>
-          <div class="col-sm-2 ">
-              <select class="form-control" name="group_id" placeholder="Code">
-                <option>Choose</option>
-                <option value="1 BITC S1G1">1 BITC S1G1</option>
-                <option value="1 BITC S1G2">1 BITC S1G2</option>
-                
-              </select>
-             </div>
-         </div>
-          <div class="form-group">
-          <label for="type" class="col-sm-2 control-label">Upload Student</label>
-          <div class="col-sm-5 ">
-              <p><input name="csv" type="file" id="csv" class="form-control" class="col-sm-5"/> <br>
-                 <input type="submit" name="Submit" value="SUBMIT" align="center"/>
-            </div>
-         </div>
-          </form>-->
-      </div>
-    </div>
+   
+<form class="form-horizontal" method="POST">
+<h2 class="sub-header">List Student</h2>
+<h4>Class : </h4>
+<?php  
+$conn = oci_connect('system','oracle','XE');
+
+ ob_start();
+    $current_file=$_SERVER['SCRIPT_NAME'];
+    $massage= "";
+	
+
+$curs = oci_new_cursor($conn);
+$stid = oci_parse($conn, "begin liststudent_proc(:rc); end;");
+oci_bind_by_name($stid, ":rc", $curs, -1, OCI_B_CURSOR);
+oci_execute($stid);
+
+oci_execute($curs);  
+
+$curs2 = oci_new_cursor($conn);
+$stid2 = oci_parse($conn, "begin totalstudent_proc(:rc); end;");
+oci_bind_by_name($stid2, ":rc", $curs2, -1, OCI_B_CURSOR);
+oci_execute($stid2);
+
+oci_execute($curs2); 
+?>
+            
+<?php 
+while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) { 
+?>
+
+<h5>Total Student <?php echo $row2['TOTAL_STUDENT'];?></h5> 
+
+<?php  
+}
+ ?>
+
+ <table width="1000" border="1" align="center">  
+<tr>
+
+<th width="126"> <div align="center">Matric Number</div></th>    
+<th width="351"> <div align="center">Student Name </div></th>
+<th width="50"> <div align="center">Year </div></th>
+<th width="50"> <div align="center">Course </div></th>
+<th width="50"> <div align="center">Session </div></th> 
+<th width="50"> <div align="center">Group </div></th>  
+<th width="50"> <div align="center">Faculty</div></th>  
+<th width="131"> <div align="center">Action </div></th> 
+
+
+</tr> 
+
+<?php  
+while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+ ?>  
+	 
+<tr>  
+ 
+<td><div align="center"><?php echo $row['MATRIC_NO'];?></div></td>  
+<td><div align="center"><?php echo $row['STUD_NAME'];?></div></td> 
+<td><div align="center"><?php echo $row['STUD_YEAR'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_COURSE'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_SESSION'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_GROUP'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_FACULTY'];?></div></td>
+<td><div align="center"><a href="student_update2.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">UPDATE</a>||<a href="student_delete.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">DELETE</a></td>
+  
+</tr>  
+<?php  
+}
+?> 
+</table> 
+<br>
+  <div class="col-sm-offset-2 col-sm-10" align="right">
+  <a href="add_student.php" class="btn btn-primary">Add Student</a>
   </div>
+     
+<?php
+oci_free_statement($stid);
+oci_free_statement($curs);
+oci_close($conn);
+				
+ ?>    
+  
+      
+ 
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
@@ -129,6 +176,5 @@ while ($test = oci_fetch_assoc ($objParse))
   <script src="holder.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="ie10-viewport-bug-workaround.js"></script>
- 
 </body>
 </html>
