@@ -83,6 +83,22 @@
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h3 class="sub-header">Student Attendance </h3>
+        <form action="#" method="post">
+          <div class="well">
+          Select Class:
+          <select name="class">
+            <option> -- Choose -- </option>
+            <option>1 BITD S1G1</option>
+            <option>1 BITD S1G2</option>
+            <option>2 BITD S1G1</option>
+            <option>2 BITD S1G2</option>
+            <option>3 BITD S1G1</option>
+            <option>3 BITD S1G2</option>
+          </select>
+          <button type="submit" class="btn btn-primary btn-xs">Display</button>
+        </div>
+        </form>
+        <h5 class="sub-header">1 BITD S1G1</h5>
         <form class="" action="#" method="post">
           <table class="table table-striped table-bordered">
             <tr>
@@ -136,10 +152,10 @@
               <td><input type="checkbox" name="week1lec" value="1" checked></td>
               <td><input type="checkbox" name="week1lec" value="1" checked></td>
               <td><input type="checkbox" name="week1lec" value="1" checked></td>
-              <td><input type="checkbox" name="week1lec" value="1" checked></td>
-              <td><input type="checkbox" name="week1lec" value="1" checked></td>
-              <td><input type="checkbox" name="week1lec" value="1" checked></td>
-              <td></td>
+              <td><input type="checkbox" name="week1lec" value="1"></td>
+              <td><input type="checkbox" name="week1lec" value="1"></td>
+              <td><input type="checkbox" name="week1lec" value="1"></td>
+              <td><a href="#">Upload</a></td>
             </tr>
           </table>
           <button type="submit" name="Save" class="btn btn-primary pull-right">Save</button>
