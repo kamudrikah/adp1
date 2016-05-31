@@ -1,97 +1,128 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php 
+$conn = oci_connect('system','oracle','XE');
+session_start();
+
+if(!isset($_SESSION['lecturer_id'])) header ('location: ');
+$LECTURER_ID = $_SESSION['lecturer_id'];
+$sql = "select * from LECTURER WHERE LECTURER_ID = '".$LECTURER_ID."'";
+$objParse = oci_parse ($conn,$sql);
+oci_execute ($objParse, OCI_DEFAULT);
+while ($test = oci_fetch_assoc ($objParse))
+{	
+}
+?>
+<!DOCTYPE html>
+<html lang="en"> 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css"/>
-<!-- Optional theme -->
-<link rel="shortcut icon" href="image/logoshortcut.jpg"/>
-<link rel="stylesheet" href="css/bootstrap-theme.min.css"  />
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<title>ADP</title>
-<link rel="stylesheet" href="layout.css" type="text/css">
-<style type="text/css">
-<!--
-.style1 {color: #000066}
--->
-</style>
-<div id="header">
-<center>
-<h2>CardioZA Enterprise Sales and Inventory System</h2>
-</div>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="file:///C|/xampp/htdocs/favicon.ico">
+
+  <title>UTeM Attendance System</title>
+ 
+  <!-- Bootstrap core CSS -->
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="dashboard.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="ie-emulation-modes-warning.js"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body bgcolor="#FFFFCC">
-<div id="navigation">
-<ul>
-<li><a href="mainpageStaff.php">Home</a></li>
-<li><a href="CustomerPage.php">Customer Details</a></li>
-<li><a href="ProductPage.php">Our Products</a></li>
-<li><a href="OrderPage.php">Product Orders</a></li>
-<li><a href="mainpageStaff.php">Contact us</a></li>
-<li><div align="right"><a href="loginStaff.php">Logout</a></div></li>
-</ul>
-</div>
-<br />
-<br />
-<br />
-<br />
-<table width="65" border="0" align="left">
-  <tr>
-    <td width="59" height="73"><a href="CustomerPage.php">
-    <div align="center"><img src="image/BackButton.png" width="50" height="50"></a></div></td>
-  </tr>
-</table>
 
+<body>
 
-<form name="frmSearch" method="get" action="<?=$_SERVER['SCRIPT_NAME'];?>">  
-<table width="624" border="0" align="center">  
-<tr>	
-<th width="419" height="35">Search Customer Here 
-  <input name="txtKeyword" type="text" id="txtKeyword">     
-	<td width="189"> <input type="submit" value="Search"></th></td>
-	<td width="2"></th></tr>  
-</table>  
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+         
+         <li>  </li>
+       
+          <li><a href="logout.php">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+    <div class="row">
+      
+     <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          
+          <li><a href="searchViewCustomer.php">Class</a></li>
+          <li><a href="student_attendance.php">Student Attendance</a></li>
+           <li><a href="blobins.php">Upload</a></li>
+           
+        </ul>
+      </div>
+      
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h2>Welcome <?php echo $_SESSION["lecturer_name"];?></h2><br><br>
+      
+        <form class="form-horizontal" name="frmSearch" method="get" action="<?=$_SERVER['SCRIPT_NAME'];?>"> 
+       
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="col-sm-2 control-label">Search Student Here</label>
+          <div class="col-sm-5">
+              <input type="text" name="txtKeyword" id="txtKeyword" class="form-control" placeholder=" "/><input  type="submit" value="Search">
+           
+          </div>
 </form>   
 <br />
 </div>
- 
-  
+
   
 <?php
 if(isset($_GET["txtKeyword"])){
-
 if($_GET["txtKeyword"] != "")  
 {  
-//create connection
-
-$conn = oci_connect('sofea','sofea','oraclesofea');
-
 if (!$conn) 
 {
 	die ("Connection failed:".oci_connect_error()) ;
 }
 
-  
-  
-  
-$strSQL = "SELECT * FROM CUSTOMER1 
-WHERE (CUST_ID LIKE '%".$_GET["txtKeyword"]."%' ) OR (F_NAME LIKE '%".$_GET["txtKeyword"]."%') OR (L_NAME LIKE '%".$_GET["txtKeyword"]."%') OR (CITY LIKE '%".$_GET["txtKeyword"]."%') OR (STATE LIKE '%".$_GET["txtKeyword"]."%')";
+ 
+$strSQL = "SELECT * FROM STUDENT 
+WHERE (MATRIC_NO LIKE '%".$_GET["txtKeyword"]."%' ) OR (STUD_NAME LIKE '%".$_GET["txtKeyword"]."%') OR (STUD_BIL LIKE '%".$_GET["txtKeyword"]."%') OR (STUD_COURSE LIKE '%".$_GET["txtKeyword"]."%') OR (STUD_YEAR LIKE '%".$_GET["txtKeyword"]."%') OR (STUD_FACULTY LIKE '%".$_GET["txtKeyword"]."%')";
 $objParse = oci_parse ($conn, $strSQL);  
 oci_execute ($objParse);  
 ?> 
  
-<tr><td><div align="center"><table width="1200" border="1"></div></tr></td>
+<table width="941" border="1" align="center"> 
 <tr bordercolor="#000000">  
-<th width="150"> <div align="center">Customer ID  </div></th>
-<th width="150"> <div align="center">Firstname </div></th>  
-<th width="150"> <div align="center">Lastname  </div></th>  
-<th width="200"> <div align="center">Address </div></th>  
-<th width="150"> <div align="center">Postcode</div></th>  
-<th width="150"> <div align="center">City </div></th>
-<th width="150"> <div align="center">State</div></th>
-<th width="200"> <div align="center">Phone No</div></th>   
+<th width="59"> <div align="center">No </div></th>
+<th width="149"> <div align="center">Matric Number</div></th>  
+<th width="239"> <div align="center">Name  </div></th>  
+<th width="40"> <div align="center">Year </div></th>  
+<th width="91"> <div align="center">Course</div></th>  
+<th width="69"> <div align="center">Session </div></th>
+<th width="61"> <div align="center">Group</div></th>
+<th width="181"> <div align="center">Faculty</div></th>   
 </tr>  
 <br />
 <?php  
@@ -99,14 +130,14 @@ while($result = oci_fetch_array($objParse,OCI_BOTH))
 {  
 ?>  
 <tr>  
-<td><div  align="center"><?=$result["CUST_ID"];?></div></td>
-<td><div  align="center"><?=$result["F_NAME"];?></div></td>  
-<td><div  align="center"><?=$result["L_NAME"];?></td>  
-<td><?=$result["ADDRESS"];?></td>  
-<td><div  align="center"><?=$result["POSTCODE"];?></div></td>  
-<td align="center"><?=$result["CITY"];?></td>
-<td align="center"><?=$result["STATE"];?></td>
-<td align="center"><?=$result["PHONENO"];?></td>
+<td><div align="center"><?=$result["STUD_BIL"];?></div></td>
+<td><div align="center"><?=$result["MATRIC_NO"];?></div></td>  
+<td><div align="center"><?=$result["STUD_NAME"];?></td>  
+<td><div  align="center"><?=$result["STUD_YEAR"];?></td>  
+<td><div  align="center"><?=$result["STUD_COURSE"];?></div></td>  
+<td><div align="center"><?=$result["STUD_SESSION"];?></td>
+<td><div align="center"><?=$result["STUD_GROUP"];?></td>
+<td><div align="center"><?=$result["STUD_FACULTY"];?></td>
 </tr>  
 <?php 
 }  
@@ -115,9 +146,21 @@ while($result = oci_fetch_array($objParse,OCI_BOTH))
 <?php  
 oci_close($conn);  
 }}
-?>   
- 
- 
+       
+?>     
+  </div>
+    </div>
 
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="holder.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="ie10-viewport-bug-workaround.js"></script>
+ 
 </body>
 </html>

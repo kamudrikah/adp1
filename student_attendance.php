@@ -1,15 +1,15 @@
 <?php
-// $conn = oci_connect('system','oracle','XE');
-// session_start();
+$conn = oci_connect('system','oracle','XE');
+ session_start();
 
-// if(!isset($_SESSION['lecturer_id'])) header ('location: ');
-// $LECTURER_ID = $_SESSION['lecturer_id'];
-// $sql = "select * from LECTURER WHERE LECTURER_ID = '".$LECTURER_ID."'";
-// $objParse = oci_parse ($conn,$sql);
-// oci_execute ($objParse, OCI_DEFAULT);
-// while ($test = oci_fetch_assoc ($objParse))
-// {
-// }
+ if(!isset($_SESSION['lecturer_id'])) header ('location: ');
+ $LECTURER_ID = $_SESSION['lecturer_id'];
+ $sql = "select * from LECTURER WHERE LECTURER_ID = '".$LECTURER_ID."'";
+ $objParse = oci_parse ($conn,$sql);
+ oci_execute ($objParse, OCI_DEFAULT);
+ while ($test = oci_fetch_assoc ($objParse))
+ {
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,28 +72,35 @@
     <div class="row">
 
       <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          <li class="active"><a href="uploadClass.php"> <span class="sr-only">(current)</span></a></li>
-          <li><a href="">Upload Class</a></li>
-          <li><a href="">Class</a></li>
-          <li><a href="">Student Attendance</a></li>
-          <li><a href="">Report</a></li>
-
+         <ul class="nav nav-sidebar">
+          <li><a href="searchViewCustomer.php">Class</a></li>
+          <li><a href="student_attendance.php">Student Attendance</a></li>
+           <li><a href="blobins.php">Upload</a></li>
         </ul>
-      </div>
+
+      </div><a href="assign.php">assign</a>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h3 class="sub-header">Student Attendance </h3>
-        <form action="#" method="post">
+        <form action="student_attendance.php" method="post"  >
           <div class="well">
           Select Class:
-          <select name="class">
+          <select name="groupid" id="groupid">
             <option> -- Choose -- </option>
-            <option>1 BITD S1G1</option>
-            <option>1 BITD S1G2</option>
-            <option>2 BITD S1G1</option>
-            <option>2 BITD S1G2</option>
-            <option>3 BITD S1G1</option>
-            <option>3 BITD S1G2</option>
+                <?php
+				// FECTH SUBJECT
+					$queryGroup = "select a.group_id , g.details  from GROUPNAME g , assign_class a ,LECTURER l
+									where 
+									g.group_id = a.group_id and 
+									l.LECTURER_ID = a.LECTURER_ID AND 
+									a.LECTURER_ID = '$LECTURER_ID'";
+					$queryGroup = oci_parse($conn,$queryGroup);
+					oci_execute($queryGroup);
+
+				while($row = oci_fetch_array($queryGroup)){
+					echo "<option value='".$row['GROUP_ID']."'>".$row['GROUP_ID']."</option>";
+				}
+				?>
+           
           </select>
           <button type="submit" class="btn btn-primary btn-xs">Display</button>
         </div>
@@ -123,6 +130,32 @@
             </tr>
             <tr>
               <td>1</td>
+              <?php 
+			  if(isset($_POST['groupid'])){
+				 $gid = $_POST['groupid'];
+				 
+				 
+				 		$queryGroup = "select s.matric_no , s.stud_name, code_subject , sem_stud , session_stud , status_lab , status_lec , week
+							from student s, stud_subj ss , attendance a	,						
+							
+							where s.stud_bil = ss.stud_bil 
+							and ss.stud_subj = a.stud_subj 
+							and sem_stud = '&enter_sem' and session_stud = '&enter_session';     ";
+					$queryGroup = oci_parse($conn,$queryGroup);
+					oci_execute($queryGroup);
+
+				while($row = oci_fetch_array($queryGroup)){
+					echo "<option value='".$row['GROUP_ID']."'>".$row['GROUP_ID']."</option>";
+				}
+				  
+				  
+				  }
+			  
+			  
+			  
+			  
+			  
+			  ?> 
               <td>B031410315</td>
               <td>Ku Ahmad Mudrikah Ku Mukhtar</td>
               <td><input type="checkbox" name="week1lec" value="1" checked></td>

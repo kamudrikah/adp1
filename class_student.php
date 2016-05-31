@@ -81,7 +81,7 @@ while ($test = oci_fetch_assoc ($objParse))
    
 <form class="form-horizontal" method="POST">
 <h2 class="sub-header">List Student</h2>
-<h4>Class : </h4>
+<h4>&nbsp; </h4>
 <?php  
 $conn = oci_connect('system','oracle','XE');
 
@@ -168,12 +168,12 @@ oci_close($conn);
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-  <script src="holder.min.js"></script>
+<script src="holder.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="ie10-viewport-bug-workaround.js"></script>
+<script src="ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

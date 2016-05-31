@@ -1,5 +1,5 @@
 <?php
-$conn = oci_connect('priya', '123', 'localhost/orcl');
+$conn = oci_connect('system','oracle','XE');
 session_start();
 
 if(!isset($_SESSION['matric_no'])) header ('location: ');
@@ -105,7 +105,7 @@ $stmt=oci_parse($conn,$SQL);
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
-
+ 
         <!-- Page Content -->
         <div id="page-content-wrapper">
 		<h6><?php echo "USER:"; ?><?php echo $sName;?><h6>

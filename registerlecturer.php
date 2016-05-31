@@ -29,7 +29,7 @@ $STATUS = $_POST['status'];
 				
              echo"<script language = 'Javascript'>
 					alert('Done added lecturer in your system.')
-					location.href ='login.php' </script>";
+					location.href ='list_lecturer.php' </script>";
 
 	oci_close($conn);
 ?>

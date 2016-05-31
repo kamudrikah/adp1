@@ -1,16 +1,18 @@
-<?php 
-$conn = oci_connect('system','oracle','XE');
-session_start();
 
-if(!isset($_SESSION['lecturer_id'])) header ('location: ');
-$LECTURER_ID = $_SESSION['lecturer_id'];
-$sql = "select * from LECTURER WHERE LECTURER_ID = '".$LECTURER_ID."'";
-$objParse = oci_parse ($conn,$sql);
-oci_execute ($objParse, OCI_DEFAULT);
-while ($test = oci_fetch_assoc ($objParse))
-{	
-}
+<?php  
+$conn = oci_connect('system','oracle','XE');
+
+ ob_start();
+$current_file=$_SERVER['SCRIPT_NAME'];    $massage= "";
+$curs = oci_new_cursor($conn);
+$stid = oci_parse($conn, "begin list_studsubj_proc(:rc); end;");
+oci_bind_by_name($stid, ":rc", $curs, -1, OCI_B_CURSOR);
+oci_execute($stid);
+
+oci_execute($curs);  
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@ while ($test = oci_fetch_assoc ($objParse))
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="file:///C|/xampp/htdocs/favicon.ico">
+  <link rel="icon" href="../../favicon.ico">
 
   <title>Admin - UTeM Attendance System</title>
 
@@ -56,11 +58,10 @@ while ($test = oci_fetch_assoc ($objParse))
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">ADP - Administrator</a>
-      
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="logout.php">Logout</a></li>
+          <li><a href="#">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -69,11 +70,11 @@ while ($test = oci_fetch_assoc ($objParse))
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          <li class="active"><a href="mainpage.php">Register Subject <span class="sr-only">(current)</span></a></li>
+           <ul class="nav nav-sidebar">
+          <li ><a href="mainpage.php">Register Subject </a></li>
           <li><a href="register_lecturer.php">Register Lecturer </a></li>
           <li><a href="uploadClass.php">Upload Student</a></li>
-          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
+          <li class="active"><a href="assign_lecturer.php">Assign Lecturer <span class="sr-only">(current)</span></a></li>
           <li><a href="student_class.php">Assign Student</a></li>
           <li><a href="subjectUpdate.php">List Subject </a></li>
            <li><a href="list_lecturer.php">List Lecturer</a></li>
@@ -82,37 +83,50 @@ while ($test = oci_fetch_assoc ($objParse))
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-        <h2 class="sub-header">Register Subject</h2>
-        <form action="subject.php" method="post" class="form-horizontal">
-          <div class="form-group">
-            <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>
-            <div class="col-sm-10">
-              <input type="text" name="code_subject" class="form-control" placeholder="Code">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="subject_name" class="col-sm-2 control-label">Subject Name</label>
-            <div class="col-sm-10">
-              <input type="text" name="subject_name" class="form-control" placeholder="Subject Name">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="type_subject" class="col-sm-2 control-label">Subject Type</label>
-            <div class="col-sm-10">
-              <select class="form-control" name="type_subject">
-                <option>Choose</option>
-                <option value="Course Core Subject">Course Core Subject</option>
-                <option value="Program Core Subject">Program Core Subject</option>
-                <option value="University Subject">University Subject</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-          </div>
-        </form>
+        <h2 class="sub-header">Assign Subject</h2>
+        <div class="table-responsive">
+        
+<table width="1020" border="1" align="left">  
+<tr>
+<th width="111"> <div align="center">Code Subject</div></th>  
+<th width="140"> <div align="center">Student</th>     
+<th width="140"> <div align="center">Sem </div></th>     
+<th width="187"> <div align="center">Session</div></th>  
+
+<div class="form-group">
+<div class="col-sm-offset-2 col-sm-10">
+
+ </div>
+</div>
+
+</tr> 
+
+<?php  
+while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+ ?>  
+	 
+<tr>  
+<td><div align="center"><?php echo $row['CODE_SUBJECT'];?></div></td>  
+<td><div align="center"><?php echo $row['STUD_BIL'];?></div></td>  
+<td><div align="center"><?php echo $row['SEM_STUD'];?></div></td>  
+<td><div align="center"><?php echo $row['SESSION_STUD'];?></div></td>   
+
+<!--<td width="81" align="center"><a href="assign_to_class.php?LECTURER_ID=">ASSIGN</a></td>-->
+  
+</tr>  
+
+<?php  
+}
+?> 
+</table> 
+<a href="assign_student.php"></a><button type="submit" class="btn btn-primary">Add</button>
+<?php
+oci_free_statement($stid);
+oci_free_statement($curs);
+oci_close($conn);
+				
+ ?>   
+        </div>
       </div>
     </div>
   </div>
@@ -120,12 +134,12 @@ while ($test = oci_fetch_assoc ($objParse))
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-  <script src="holder.min.js"></script>
+  <script src="../holder.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="ie10-viewport-bug-workaround.js"></script>
+  <script src="../ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

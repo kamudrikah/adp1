@@ -84,15 +84,11 @@ oci_execute($stidGroup);
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
-         <ul class="nav nav-sidebar">
-          <li ><a href="mainpage.php">Register Subject </a></li>
-          <li><a href="register_lecturer.php">Register Lecturer </a></li>
-          <li><a href="uploadClass.php">Upload Student</a></li>
-          <li class="active"><a href="assign_lecturer.php">Assign Lecturer <span class="sr-only">(current)</span></a></li>
-          <li><a href="student_class.php">Assign Student</a></li>
-          <li><a href="subjectUpdate.php">List Subject </a></li>
-           <li><a href="list_lecturer.php">List Lecturer</a></li>
-            <li><a href="list_student.php">List Student</a></li>
+        <ul class="nav nav-sidebar">
+          <li><a href="mainpage.php">Register Subject</a></li>
+          <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
+          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
+            <li><a href="assign_student.php">Assign Student</a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -112,8 +108,8 @@ oci_execute($stidGroup);
                   while($rowLect = oci_fetch_array($stid)){?>
                   <b>Subject:</b><?php echo $rowLect['CODE_SUBJECT'] ?>
                   <b>Class:</b><?php echo $rowLect['GROUP_ID'] ?> 
-                  <!--<b><a href="delete_assign_lecturer.php"><button type="submit" class="btn btn-primary">Delete</button>
-                  </a>-->
+                  <b><a href="delete_assign_lecturer.php"><button type="submit" class="btn btn-primary">Delete</button>
+                  </a>
                   <br>
 				  <?php } ?>
                   

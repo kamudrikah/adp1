@@ -70,12 +70,14 @@ while ($test = oci_fetch_assoc ($objParse))
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
        <ul class="nav nav-sidebar">
-          <li><a href="mainpage.php">Register Subject</a></li>
-          <li class="active"><a href="register_lecturer.php">Register Lecturer <span class="sr-only">(current)</span></a></li>
+          <li ><a href="mainpage.php">Register Subject </a></li>
+          <li><a href="register_lecturer.php">Register Lecturer </a></li>
           <li><a href="uploadClass.php">Upload Student</a></li>
-          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
-          <li><a href="subjectUpdate.php">List Subject Registered</a></li>
-           <li><a href="list_lecturer.php">List Lecturer</a></li>
+          <li ><a href="assign_lecturer.php">Assign Lecturer </a></li>
+          <li><a href="student_class.php">Assign Student</a></li>
+          <li><a href="subjectUpdate.php">List Subject </a></li>
+           <li ><a href="list_lecturer.php">List Lecturer </a></li>
+            <li class="active"><a href="list_student.php">List Student <span class="sr-only">(current)</span></a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -115,6 +117,7 @@ while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
 <?php  
 }
  ?>
+
 
  <table width="1000" border="1" align="center">  
 <tr>

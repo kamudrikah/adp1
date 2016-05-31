@@ -1,15 +1,12 @@
-<?php 
+<?php
 $conn = oci_connect('system','oracle','XE');
 session_start();
+//if(!isset($_SESSION['lecturer_id'])) header ('location: ');
 
-if(!isset($_SESSION['lecturer_id'])) header ('location: ');
 $LECTURER_ID = $_SESSION['lecturer_id'];
-$sql = "select * from LECTURER WHERE LECTURER_ID = '".$LECTURER_ID."'";
-$objParse = oci_parse ($conn,$sql);
-oci_execute ($objParse, OCI_DEFAULT);
-while ($test = oci_fetch_assoc ($objParse))
-{	
-}
+$query = "select * from lecturer JOIN ASSIGN_CLASS ON LECTURER.LECTURER_ID = ASSIGN_CLASS.LECTURER_ID where lecturer.lecturer_id = '$LECTURER_ID'";
+$stid = oci_parse($conn,$query);
+oci_execute($stid);
 ?>
 <!DOCTYPE html>
 <html lang="en"> 
@@ -72,18 +69,31 @@ while ($test = oci_fetch_assoc ($objParse))
     <div class="row">
       
      <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          
-          <li><a href="class_student.php">Class</a></li>
-          <li><a href="attend.php">Student Attendance</a></li>
-           <li><a href="">Report</a></li>
-           
+       <ul class="nav nav-sidebar">
+          <li><a href="searchViewCustomer.php">Class</a></li>
+          <li><a href="student_attendance.php">Student Attendance</a></li>
+           <li><a href="blobins.php">Upload</a></li>
         </ul>
+
       </div>
       
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <h2>Welcome <?php echo $_SESSION["lecturer_name"];?></h2><br><br>
         <h3 class="sub-header">Class </h3>
+        
+        <div class="media-body">
+                <h4 class="media-heading"><?php //echo $row[1] ?></h4>
+                <p>
+                  <b>Lecturer ID:</b><?php echo $LECTURER_ID; ?><br>
+                  <?php
+                  while($rowLect = oci_fetch_array($stid)){?>
+                  <b>Subject:</b><?php echo $rowLect['CODE_SUBJECT'] ?>
+                  <b>Class:</b><a href="view.php?id=<?php echo $rowLect['GROUP_ID'] ?>"> <?php echo $rowLect['GROUP_ID'] ?></a>
+                  <br>
+				  <?php } ?>
+                  
+                </p>
+              </div>
         <!--<form action="" method="post" class="form-horizontal">
         <div class="form-group">
           <label for="code_subject" class="col-sm-2 control-label">Subject Code</label>

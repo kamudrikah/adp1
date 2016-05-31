@@ -1,10 +1,11 @@
 <?php
-     $conn = oci_connect('system','oracle','XE');
-    ob_start();
-    $current_file=$_SERVER['SCRIPT_NAME'];
-    $massage= "";
+$conn = oci_connect('system','oracle','XE');
+ob_start();
+$current_file=$_SERVER['SCRIPT_NAME'];
+$massage= "";
 	
-
+//print_r($_POST);
+//die();
 $GROUP_ID = $_POST['group_id'];
 $CODE_SUBJECT = $_POST['code_subject'];
 $LECTURER_ID = $_POST['lecturer_id'];
@@ -13,8 +14,8 @@ $CLASS_SESSION = $_POST['class_session'];
 
 
        
-	         $sql = 'begin insert_assign_class(:c1,:c2,:c3,:c4,:c5);end;';
-                $stid = oci_parse($conn,$sql);
+	        $sql = 'begin insert_assign_class(:c1,:c2,:c3,:c4,:c5);end;';
+               $stid = oci_parse($conn,$sql);
                 $r = @oci_execute($stid);
 				oci_bind_by_name($stid,':c1',$GROUP_ID);
 				oci_bind_by_name($stid,':c2',$CODE_SUBJECT);

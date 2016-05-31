@@ -12,7 +12,7 @@ $conn = oci_connect('system','oracle','XE');
 			$strSQL .="CODE_SUBJECT = '".$_POST["CODE_SUBJECT"]."' ";  
 			$strSQL .=",SUBJECT_NAME = '".$_POST["SUBJECT_NAME"]."' ";  
 			$strSQL .=",TYPE_SUBJECT = '".$_POST["TYPE_SUBJECT"]."' ";  
-			$strSQL .="WHERE CODE_SUBJECT = '".$_GET["CODE_SUBJECT"]."' ";  
+			$strSQL .="WHERE CODE_SUBJECT = '".$_POST["CODE_SUBJECT"]."' ";  
 			$objParse = oci_parse($conn, $strSQL);  
 			$objExecute = oci_execute($objParse, OCI_DEFAULT);  
 			if($objExecute)  

@@ -3,6 +3,8 @@ $conn = oci_connect('system','oracle','XE');
 session_start();
 ?>
 <?php if (isset($_GET['success'])) { echo "<b>Your file has been imported.</b><br><br>"; } //generic success notice ?> 
+
+<title>Admin - UTeM Attendance System</title>
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1" action="ImportSchedule.php"> 
 
 <div  align="center"><br /><br />

@@ -55,7 +55,7 @@ while ($test = oci_fetch_assoc ($objParse))
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">ADP - Administrator</a>
+        
       
       </div>
       <div id="navbar" class="navbar-collapse collapse">
@@ -69,22 +69,67 @@ while ($test = oci_fetch_assoc ($objParse))
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
-       <ul class="nav nav-sidebar">
-          <li class="active"><a href="mainpage.php">Register Subject <span class="sr-only">(current)</span></a></li>
+      <ul class="nav nav-sidebar">
+          <li ><a href="mainpage.php">Register Subject </a></li>
           <li><a href="register_lecturer.php">Register Lecturer </a></li>
           <li><a href="uploadClass.php">Upload Student</a></li>
-          <li><a href="assign_lecturer.php">Assign Lecturer</a></li>
-          <li><a href="student_class.php">Assign Student</a></li>
+          <li ><a href="assign_lecturer.php">Assign Lecturer </a></li>
+          <li class="active"><a href="student_class.php">Assign Student <span class="sr-only">(current)</span></a></li>
           <li><a href="subjectUpdate.php">List Subject </a></li>
            <li><a href="list_lecturer.php">List Lecturer</a></li>
             <li><a href="list_student.php">List Student</a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      
-<form class="form-horizontal" method="POST">
-<h2 class="sub-header">List Subject</h2>
 
+        <h2 class="sub-header">Add New Student</h2>
+        <form action="student.php" method="post" class="form-horizontal">
+        
+          <div class="form-group">
+            <label for="matric_no" class="col-sm-2 control-label">Matric Number</label>
+            <div class="col-sm-6">
+              <input type="text" name="matric_no" class="form-control" placeholder="Matric Number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stud_name" class="col-sm-2 control-label">Student Name</label>
+            <div class="col-sm-6">
+              <input type="text" name="stud_name" class="form-control" placeholder="Full Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stud_group" class="col-sm-2 control-label">Group Class</label>
+            <div class="col-sm-4">
+             <input type="text" name="stud_year" class="form-control" placeholder="Year">
+             <input type="text" name="stud_course" class="form-control" placeholder="Course">
+             <input type="text" name="stud_session" class="form-control" placeholder="Session">
+             <input type="text" name="stud_group" class="form-control" placeholder="Group">
+           </div>
+           </div>
+                        
+          <div class="form-group">
+            <label for="stud_faculty" class="col-sm-2 control-label">Faculty</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="stud_faculty" name="stud_faculty" placeholder="Code">
+                <option>Faculty</option>
+                <option value="FTMK">FTMK</option>
+                <option value="FKP">FKP</option>
+                <option value="FKEKK">FKEKK</option>
+                <option value="FKE">FKE</option>
+                <option value="FTK">FTK</option>
+                <option value="FKM">FKM</option>
+                <option value="FPTT">FPTT</option>
+              </select>
+            </div>
+          </div>	
+           <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </div>
+<form class="form-horizontal" method="POST">
+<h2 class="sub-header">List Student</h2>
+<h4>Class : </h4>
 <?php  
 $conn = oci_connect('system','oracle','XE');
 
@@ -94,14 +139,14 @@ $conn = oci_connect('system','oracle','XE');
 	
 
 $curs = oci_new_cursor($conn);
-$stid = oci_parse($conn, "begin listsubject_proc(:rc); end;");
+$stid = oci_parse($conn, "begin liststudent_proc(:rc); end;");
 oci_bind_by_name($stid, ":rc", $curs, -1, OCI_B_CURSOR);
 oci_execute($stid);
 
 oci_execute($curs);  
 
 $curs2 = oci_new_cursor($conn);
-$stid2 = oci_parse($conn, "begin totalsubject_proc(:rc); end;");
+$stid2 = oci_parse($conn, "begin totalstudent_proc(:rc); end;");
 oci_bind_by_name($stid2, ":rc", $curs2, -1, OCI_B_CURSOR);
 oci_execute($stid2);
 
@@ -112,37 +157,46 @@ oci_execute($curs2);
 while (($row2 = oci_fetch_array($curs2, OCI_ASSOC+OCI_RETURN_NULLS)) != false) { 
 ?>
 
-<h5>Total Subject <?php echo $row2['TOTAL_SUBJECT'];?></h5> 
+<h5>Total Student <?php echo $row2['TOTAL_STUDENT'];?></h5> 
 
 <?php  
 }
  ?>
  <table width="1000" border="1" align="center">  
 <tr>
-<th width="126"> <div align="center">Subject Code</div></th>
-<th width="351"> <div align="center">Subject Name </div></th>
-<th width="164"> <div align="center"> Type</div></th>  
+<!--<th width="50"> <div align="center">No.</div></th> -->
+<th width="126"> <div align="center">Matric Number</div></th>    
+<th width="351"> <div align="center">Student Name </div></th>
+<th width="50"> <div align="center">Year </div></th>
+<th width="50"> <div align="center">Course </div></th>
+<th width="50"> <div align="center">Session </div></th> 
+<th width="50"> <div align="center">Group </div></th>  
+<th width="50"> <div align="center">Faculty</div></th>  
 <th width="131"> <div align="center">Action </div></th> 
+
+
 </tr> 
 
 <?php  
 while (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
-?>  
+ ?>  
 	 
 <tr>  
-<td><div align="center"><?php echo $row['CODE_SUBJECT'];?></div></td>  
-<td><div align="center"><?php echo $row['SUBJECT_NAME'];?></div></td>  
-<td><div align="center"><?php echo $row['TYPE_SUBJECT'];?></div></td>  
-<td align="center"><a href="subjectUpdate2.php?CODE_SUBJECT=<?=$row['CODE_SUBJECT'];?>">UPDATE</a>||<a href="subjectDelete.php?CODE_SUBJECT=<?=$row['CODE_SUBJECT'];?>">DELETE</a></td>
+ 
+<td><div align="center"><?php echo $row['MATRIC_NO'];?></div></td>  
+<td><div align="center"><?php echo $row['STUD_NAME'];?></div></td> 
+<td><div align="center"><?php echo $row['STUD_YEAR'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_COURSE'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_SESSION'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_GROUP'];?></div></td>
+<td><div align="center"><?php echo $row['STUD_FACULTY'];?></div></td>
+<td><div align="center"><a href="student_update2.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">UPDATE</a>||<a href="student_delete.php?MATRIC_NO=<?=$row['MATRIC_NO'];?>">DELETE</a></td>
   
 </tr>  
- 
 <?php  
 }
 ?> 
 </table> 
-
- 
 <?php
 oci_free_statement($stid);
 oci_free_statement($curs);
