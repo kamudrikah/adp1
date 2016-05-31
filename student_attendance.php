@@ -72,10 +72,19 @@ $conn = oci_connect('system','oracle','XE');
     <div class="row">
 
       <div class="col-sm-3 col-md-2 sidebar">
+<<<<<<< HEAD
          <ul class="nav nav-sidebar">
           <li><a href="searchViewCustomer.php">Class</a></li>
           <li><a href="student_attendance.php">Student Attendance</a></li>
            <li><a href="blobins.php">Upload</a></li>
+=======
+        <ul class="nav nav-sidebar">
+          <li><a href="">Upload Class</a></li>
+          <li><a href="">Class</a></li>
+          <li class="active"><a href="">Student Attendance</a></li>
+          <li><a href="">Report</a></li>
+
+>>>>>>> origin/master
         </ul>
 
       </div><a href="assign.php">assign</a>
